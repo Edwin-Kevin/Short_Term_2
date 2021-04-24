@@ -43,4 +43,4 @@ dxq/freertos.o: ..\Core\Src\freertos.c \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
   ..\Core\Inc\gpio.h ..\Core\Inc\main.h ..\Drivers\OLED\GUI.h \
-  F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h
+  F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\Core\Inc\tim.h

@@ -29,6 +29,7 @@
 #include "gpio.h"
 #include "GUI.h"
 #include <stdio.h>
+#include "tim.h"
 
 /* USER CODE END Includes */
 
@@ -60,6 +61,10 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmz;
 /* USER CODE BEGIN Variables */
 int g_ws = WS_LOGO;    //表示当前的UI界面
 uint32_t intick = 0;   //用于记录时间戳
+
+volatile float temp = 0;
+
+uint32_t beeptick = 0;
 
 /* USER CODE END Variables */
 /* Definitions for MainTask */
@@ -103,7 +108,9 @@ const osThreadAttr_t DataTask_attributes = {
 void WSLogo(void);
 void DrawLogo(void);
 void DrawGUI1(void);
-void Beep(int time);
+void Beep(int time,int tune);
+void BeepDone(void);
+void DispSeg(uint8_t num[4],uint8_t dot);
 
 /* USER CODE END FunctionPrototypes */
 
@@ -177,6 +184,7 @@ void MX_FREERTOS_Init(void) {
 void StartMainTask(void *argument)
 {
   /* USER CODE BEGIN StartMainTask */
+	uint8_t num[4] = {0};
   /* Infinite loop */
   for(;;)
   {
@@ -189,6 +197,10 @@ void StartMainTask(void *argument)
 				SetLeds(0);
 			  break;
 		}
+		
+		
+		DispSeg(num,2);
+		BeepDone();
 		
     osDelay(1);
   }
@@ -312,7 +324,7 @@ void WSLogo(void)
 		{
 			intick = 0;                          //复位计时器
 			g_ws = WS_GUI1;
-			Beep(500);                           //蜂鸣器鸣叫
+			Beep(500,3);                           //蜂鸣器鸣叫
 		}
 	}
 	
@@ -367,12 +379,28 @@ void DrawGUI1(void)
 	GUI_Update();
 }
 
-void Beep(int time)
+void Beep(int time,int tune)
 {
-	while(time-- > 0)    //time大于0的时候循环
+	static uint16_t TAB[] = {494,523,588,660,698,784,880,988};
+	HAL_TIM_Base_Start(&htim3);
+	
+	if(tune >= 1 && tune <= 7)
 	{
-		HAL_GPIO_TogglePin(BEEP_GPIO_Port,BEEP_Pin);   //每次循环翻转一次电平来产生周期性
-		osDelay(1);                                    //的脉冲信号
+		int pre = 1000000 / TAB[tune];
+		__HAL_TIM_SET_AUTORELOAD(&htim3,pre);
+		__HAL_TIM_SET_COMPARE(&htim3,TIM_CHANNEL_1,pre / 2);
+		
+		beeptick = osKernelGetTickCount() + time;
+		HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+	}
+}
+
+void BeepDone(void)
+{
+	if(beeptick > 0 && osKernelGetTickCount() >= beeptick)
+	{
+		beeptick = 0;
+		HAL_TIM_PWM_Stop(&htim3,TIM_CHANNEL_1);
 	}
 }
 
