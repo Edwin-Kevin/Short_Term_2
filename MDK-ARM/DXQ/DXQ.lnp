@@ -44,6 +44,11 @@
 "dxq\guislim.o"
 "dxq\ssd1306.o"
 "dxq\ssd1306_i2c.o"
+"dxq\ds_18b20.o"
+"dxq\inv_mpu.o"
+"dxq\inv_mpu_dmp_motion_driver.o"
+"dxq\mpu6050.o"
+"dxq\stm32_i2c.o"
 --library_type=microlib --strict --scatter "DXQ\DXQ.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

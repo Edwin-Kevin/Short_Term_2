@@ -30,6 +30,8 @@
 #include "GUI.h"
 #include <stdio.h>
 #include "tim.h"
+#include "DS_18B20.h"
+#include "MPU6050.h"
 
 /* USER CODE END Includes */
 
@@ -301,9 +303,45 @@ void StartGUITask(void *argument)
 void StartDataTask(void *argument)
 {
   /* USER CODE BEGIN StartDataTask */
+	osDelay(1000);
+	
+	ds18b20_init();
+	
+	
+	uint8_t mpuok = MPU_init();
+	uint8_t cnt = 0;
+	while(cnt++ < 3 && !mpuok)
+	{
+		osDelay(500);
+		mpuok = mpu_init();
+	}
+	
+	uint32_t dstick = 0;
+	uint32_t mputick = 0;
   /* Infinite loop */
   for(;;)
   {
+		if(osKernelGetTickCount() >= dstick + 1000)
+		{
+			dstick = osKernelGetTickCount();
+			float ft = ds18b20_read();
+			if(ft < 125)
+			{
+				temp = ft;
+				printf("temp:%.1f\n",temp);
+			}
+		}
+		
+		if(mpuok)
+		{
+			if(osKernelGetTickCount() >= mputick + 50)
+			{
+				mputick = osKernelGetTickCount();
+				MPU_getdata();
+				printf("axyz:%6d %6d %6d,gxyz:%6d %6d %6d\n",ax,ay,az,gx,gy,gz);
+			}
+		}
+			
     osDelay(1);
   }
   /* USER CODE END StartDataTask */

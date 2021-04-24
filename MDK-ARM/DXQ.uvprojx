@@ -336,10 +336,10 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>-Winvalid-source-encoding</MiscControls>
+              <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;   ../Drivers/STM32F4xx_HAL_Driver/Inc;   ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;   ../Middlewares/Third_Party/FreeRTOS/Source/include;   ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;   ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;   ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;   ../Drivers/CMSIS/Include;   ..\Drivers\OLED</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\Drivers\OLED;..\Drivers\DS18B20;..\Drivers\MPU6050</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -683,6 +683,76 @@
               <FileName>ssd1306_i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Drivers\OLED\ssd1306_i2c.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>DS18B20</GroupName>
+          <Files>
+            <File>
+              <FileName>DS_18B20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\DS18B20\DS_18B20.c</FilePath>
+            </File>
+            <File>
+              <FileName>DS_18B20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\DS18B20\DS_18B20.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MPU6050</GroupName>
+          <Files>
+            <File>
+              <FileName>dmpKey.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\MPU6050\dmpKey.h</FilePath>
+            </File>
+            <File>
+              <FileName>dmpmap.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\MPU6050\dmpmap.h</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\MPU6050\inv_mpu.c</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\MPU6050\inv_mpu.h</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\MPU6050\inv_mpu_dmp_motion_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu_dmp_motion_driver.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\MPU6050\inv_mpu_dmp_motion_driver.h</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\MPU6050\MPU6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\MPU6050\MPU6050.h</FilePath>
+            </File>
+            <File>
+              <FileName>STM32_I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\MPU6050\STM32_I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>STM32_I2C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\MPU6050\STM32_I2C.h</FilePath>
             </File>
           </Files>
         </Group>
