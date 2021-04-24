@@ -1,0 +1,76 @@
+<html>
+<body>
+<pre>
+<h1>�Vision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ��Vision V5.34.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Kevin 91318, HDU, LIC=ATTQ1-C7HCL-FWK2N-YV1J4-FN805-38AT0
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.34.0.0
+Toolchain Path:  F:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.16
+Assembler:       Armasm.exe V6.16
+Linker/Locator:  ArmLink.exe V6.16
+Library Manager: ArmAr.exe V6.16
+Hex Converter:   FromElf.exe V6.16
+CPU DLL:         SARMCM3.DLL V5.34.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      CMSIS_AGDI.dll V1.32.13.0
+Dialog DLL:      TCM.DLL V1.48.0.0
+ 
+<h2>Project:</h2>
+E:\shortterm2\Project\E2_XWJ\DXQ\MDK-ARM\DXQ.uvprojx
+Project File Date:  04/24/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.16', folder: 'F:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'DXQ'
+compiling gpio.c...
+compiling main.c...
+../Core/Src/freertos.c(337): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+                        GUI_DispStringHCenterAt("<B7><C0><BB>𡢷<C0><B5><C1>Զ\n<B3>̼<E0><B2><E2><C6><F7><C9><E8><BC><C6>",64,12);   //<C6><C1>ĻΪ128*64
+                                                 ^~~~~~~~~~~~  ~~~~~~~~~~~~
+../Core/Src/freertos.c(337): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+                        GUI_DispStringHCenterAt("<B7><C0><BB>𡢷<C0><B5><C1>Զ\n<B3>̼<E0><B2><E2><C6><F7><C9><E8><BC><C6>",64,12);   //<C6><C1>ĻΪ128*64
+                                                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/freertos.c(344): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+                        GUI_DispStringHCenterAt("<B3><C9>Ա1:<D6>ܿ<AC><CE><C4>",64,0);
+                                                 ^~~~~~~~   ~~~~~~~~~~~~~~~~
+../Core/Src/freertos.c(346): warning: illegal character encoding in string literal [-Winvalid-source-encoding]
+                        GUI_DispStringHCenterAt("<B3><C9>Ա2:<BA><FA><D1><E5><B3><C9>",64,32);
+                                                 ^~~~~~~~   ~~~~~~~~~~~~~~~~~~~~~~~~
+4 warnings generated.
+compiling freertos.c...
+linking...
+Program Size: Code=19762 RO-data=13398 RW-data=20 ZI-data=35756  
+FromELF: creating hex file...
+"DXQ\DXQ.axf" - 0 Error(s), 4 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.7.0.pack
+                ARM.CMSIS.5.7.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.4.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
+                Keil.STM32F4xx_DFP.2.15.0
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_DXQ
+  F:\Users\91318\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include
+  F:\Users\91318\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.4.0
+      Include file:  CMSIS\Core\Include\tz_context.h
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
