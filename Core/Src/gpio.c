@@ -176,7 +176,7 @@ void Write595(uint8_t sel, uint8_t num, uint8_t bdot)
 	HAL_GPIO_WritePin(A3_GPIO_Port, A3_Pin, GPIO_PIN_RESET);
 																	
 	uint8_t dat = TAB[num & 0x0F] | (bdot ? 0x80 : 0x00);
-	if(num == 0)
+	if(num > 0x0F)
 		dat = 0;
 	
 	uint8_t i;

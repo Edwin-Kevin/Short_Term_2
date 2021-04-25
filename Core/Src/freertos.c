@@ -68,6 +68,11 @@ uint32_t intick = 0;   //用于记录时间戳
 volatile float temp = 0;
 
 uint32_t beeptick = 0;
+uint8_t tempwarn = 0;
+uint8_t mpuwarn = 0;
+
+uint8_t pageidx = 0;
+uint32_t warntick = 0;
 
 /* USER CODE END Variables */
 /* Definitions for MainTask */
@@ -111,6 +116,9 @@ const osThreadAttr_t DataTask_attributes = {
 void WSLogo(void);
 void DrawLogo(void);
 void DrawGUI1(void);
+void DrawGUI2(void);
+void DrawGUI3(void);
+void DrawGUI4(void);
 void Beep(int time,int tune);
 void BeepDone(void);
 void DispSeg(uint8_t num[4],uint8_t dot);
@@ -201,6 +209,29 @@ void StartMainTask(void *argument)
 			  break;
 		}
 		
+		if(tempwarn || mpuwarn)
+		{
+			if(warntick == 0)
+				warntick = osKernelGetTickCount();
+			else if(osKernelGetTickCount() >= warntick + 30000)
+			{
+				tempwarn = mpuwarn = 0;
+				warntick = 0;
+			}
+			else
+			{
+				uint32_t tic = warntick + 30000 - osKernelGetTickCount();
+				num[0] = (tic / 10000) % 10;
+				num[1] = (tic / 1000) % 10;
+				num[2] = (tic / 100) % 10;
+				num[3] = (tic / 10) % 10;
+				
+				if(num[2] == 1 || num[2] == 3 || num[2] == 5)
+					Beep(100,num[2]);
+			}
+		}
+		else
+			num[0] = num[1] = num[2] = num[3] = ' ';
 		
 		DispSeg(num,2);
 		BeepDone();
@@ -235,6 +266,40 @@ void StartKeyTask(void *argument)
 					g_ws = WS_GUI1;
 					intick = 0;
 				}
+				break;
+			case WS_GUI1:
+				if(key == KEY1)
+					g_ws = WS_GUI4;
+			  else if(key == KEY4)
+					g_ws = WS_GUI2;
+				else if(key == KEY2)
+				{
+					if(pageidx > 0)
+						--pageidx;
+				}
+				else if(key == KEY3)
+				{
+					if(pageidx < 2)
+						++pageidx;
+				}
+				break;
+			case WS_GUI2:
+				if(key == KEY1)
+					g_ws = WS_GUI1;
+			  else if(key == KEY4)
+					g_ws = WS_GUI3;
+				break;
+			case WS_GUI3:
+				if(key == KEY1)
+					g_ws = WS_GUI2;
+			  else if(key == KEY4)
+					g_ws = WS_GUI4;
+				break;
+			case WS_GUI4:
+				if(key == KEY1)
+					g_ws = WS_GUI3;
+			  else if(key == KEY4)
+					g_ws = WS_GUI1;
 				break;
 			default:
 				if(key == KEY6)       //按下KEY6返回启动界面
@@ -280,16 +345,25 @@ void StartGUITask(void *argument)
     {
 			switch(g_ws)
 			{
-				case WS_LOGO:     //启动界面
+				case WS_LOGO:
 					DrawLogo();
-						break;
-				case WS_GUI1:     //主界面
+					break;
+				case WS_GUI1:
 					DrawGUI1();
-						break;
+					break;
+				case WS_GUI2:
+					DrawGUI2();
+					break;
+				case WS_GUI3:
+					DrawGUI3();
+					break;
+				case WS_GUI4:
+					DrawGUI4();
+					break;
 				default:
 					break;
-			}			
-      osDelay(1);
+			}
+      osDelay(100);
     }
   /* USER CODE END StartGUITask */
 }
@@ -319,6 +393,9 @@ void StartDataTask(void *argument)
 	
 	uint32_t dstick = 0;
 	uint32_t mputick = 0;
+	
+	int warcnt = 0;
+	
   /* Infinite loop */
   for(;;)
   {
@@ -330,6 +407,12 @@ void StartDataTask(void *argument)
 			{
 				temp = ft;
 				printf("temp:%.1f\n",temp);
+				
+				if(temp >= 28)
+				{
+					tempwarn = 1;
+//					warntick = osKernelGetTickCount();
+				}
 			}
 		}
 		
@@ -340,9 +423,21 @@ void StartDataTask(void *argument)
 				mputick = osKernelGetTickCount();
 				MPU_getdata();
 				printf("axyz:%6d %6d %6d,gxyz:%6d %6d %6d\n",ax,ay,az,gx,gy,gz);
+				
+				if(gx * gx + gy * gy + gz * gz > 2000)
+				{
+					if(++warcnt >= 3)
+					{
+						mpuwarn = 1;
+//						warntick = osKernelGetTickCount();
+					}
+				}
+				else
+					warcnt = 0;
 			}
 		}
 			
+		
     osDelay(1);
   }
   /* USER CODE END StartDataTask */
@@ -425,7 +520,96 @@ void DrawGUI1(void)
 	GUI_DrawHLine(52,0,128);
 	GUI_DrawVLine(48,0,52);
 	
+	char buf[20];
+	
+	if(pageidx == 0)
+	{
+		GUI_DispStringAt("当前温度:",50,0);
+		GUI_DispStringAt("震动报警:",50,26);
+		sprintf(buf,"%.1f℃",temp);
+		GUI_DispStringAt(buf,90,13);
+		GUI_DispStringAt(mpuwarn ? "是" : "否",90,39);
+	}
+	else if(pageidx == 1)
+	{
+		sprintf(buf,"ax:%6d",ax);
+		GUI_DispStringAt(buf,50,0);
+		if(ax > 0)
+			GUI_FillRect(70,13,70 + ax * 55 /32768,16);
+		else if(ax < 0)
+		sprintf(buf,"ay:%6d",ay);
+		GUI_DispStringAt(buf,50,17);
+			GUI_DrawRect(70,30,70 + ax * 55 /32768,33);
+		if(ay > 0)
+			GUI_FillRect(70,30,70 + ay * 55 /32768,33);
+		else if(ay < 0)
+			GUI_DrawRect(70,13,70 + ay * 55 /32768,16);
+		sprintf(buf,"az:%6d",az);
+		GUI_DispStringAt(buf,50,34);
+		if(az > 0)
+			GUI_FillRect(70,47,70 + az * 55 /32768,50);
+		else if(az < 0)
+			GUI_DrawRect(70,47,70 + az * 55 /32768,50);
+	}
+	else if(pageidx == 2)
+	{
+		
+	}
 	GUI_Update();
+}
+
+void DrawGUI2(void)
+{
+	GUI_Clear();
+	GUI_SetFont(&GUI_FontHZ_SimSun_12);
+	GUI_DispStringAt("实时监测",0,0);
+	GUI_SetColor(GUI_COLOR_BLACK);
+	GUI_DispStringAt("数据曲线",0,13);
+	GUI_SetColor(GUI_COLOR_WHITE);
+	GUI_DispStringAt("无线通信",0,26);
+	GUI_DispStringAt("参数设置",0,39);
+	GUI_DispStringAt("K1︽  K2《  K3》  K4︾",0,52);
+	
+	GUI_DrawHLine(52,0,128);
+	GUI_DrawVLine(48,0,52);
+	
+	GUI_Update();
+}
+
+void DrawGUI3(void)
+{
+	GUI_Clear();
+	GUI_SetFont(&GUI_FontHZ_SimSun_12);
+	GUI_DispStringAt("实时监测",0,0);
+	GUI_DispStringAt("数据曲线",0,13);
+	GUI_SetColor(GUI_COLOR_BLACK);
+	GUI_DispStringAt("无线通信",0,26);
+	GUI_SetColor(GUI_COLOR_WHITE);
+	GUI_DispStringAt("参数设置",0,39);
+	GUI_DispStringAt("K1︽  K2《  K3》  K4︾",0,52);
+	
+	GUI_DrawHLine(52,0,128);
+	GUI_DrawVLine(48,0,52);
+	
+	GUI_Update();	
+}
+
+void DrawGUI4(void)
+{
+	GUI_Clear();
+	GUI_SetFont(&GUI_FontHZ_SimSun_12);
+	GUI_DispStringAt("实时监测",0,0);
+	GUI_DispStringAt("数据曲线",0,13);
+	GUI_DispStringAt("无线通信",0,26);
+	GUI_SetColor(GUI_COLOR_BLACK);
+	GUI_DispStringAt("参数设置",0,39);
+	GUI_SetColor(GUI_COLOR_WHITE);
+	GUI_DispStringAt("K1︽  K2《  K3》  K4︾",0,52);
+	
+	GUI_DrawHLine(52,0,128);
+	GUI_DrawVLine(48,0,52);
+	
+	GUI_Update();	
 }
 
 void Beep(int time,int tune)
