@@ -13,6 +13,7 @@
 "dxq\stm32f4xx_it.o"
 "dxq\stm32f4xx_hal_msp.o"
 "dxq\stm32f4xx_hal_timebase_tim.o"
+"dxq\simsun_12.o"
 "dxq\stm32f4xx_hal_rcc.o"
 "dxq\stm32f4xx_hal_rcc_ex.o"
 "dxq\stm32f4xx_hal_flash.o"

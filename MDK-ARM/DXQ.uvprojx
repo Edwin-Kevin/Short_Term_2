@@ -509,6 +509,11 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f4xx_hal_timebase_tim.c</FilePath>
             </File>
+            <File>
+              <FileName>SimSun_12.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\SimSun_12.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

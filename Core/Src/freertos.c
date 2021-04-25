@@ -49,6 +49,7 @@
 #define WS_GUI4 4
 extern GUI_FLASH const GUI_FONT GUI_FontHZ_KaiTi_20;  //导入字体库和图片
 extern GUI_FLASH const GUI_FONT GUI_FontHZ_KaiTi_16;
+extern GUI_FLASH const GUI_FONT GUI_FontHZ_SimSun_12;
 extern GUI_CONST_STORAGE GUI_BITMAP bmh;
 extern GUI_CONST_STORAGE GUI_BITMAP bmz;
 
@@ -412,8 +413,18 @@ void DrawLogo(void)
 void DrawGUI1(void)
 {
 	GUI_Clear();
-	GUI_SetFont(&GUI_FontHZ_KaiTi_20);
-	GUI_DispStringHCenterAt("GUI1",64,12);
+	GUI_SetFont(&GUI_FontHZ_SimSun_12);
+	GUI_SetColor(GUI_COLOR_BLACK);
+	GUI_DispStringAt("实时监测",0,0);
+	GUI_SetColor(GUI_COLOR_WHITE);
+	GUI_DispStringAt("数据曲线",0,13);
+	GUI_DispStringAt("无线通信",0,26);
+	GUI_DispStringAt("参数设置",0,39);
+	GUI_DispStringAt("K1︽  K2《  K3》  K4︾",0,52);
+	
+	GUI_DrawHLine(52,0,128);
+	GUI_DrawVLine(48,0,52);
+	
 	GUI_Update();
 }
 
