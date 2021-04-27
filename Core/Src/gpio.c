@@ -151,14 +151,14 @@ uint8_t ScanKey(void)
 	if(HAL_GPIO_ReadPin(K6_GPIO_Port,K6_Pin) == GPIO_PIN_SET)
 		key |= KEY6;
 	
-	if(key > 0 && key == oldkey)
+	if(key > 0 && key == oldkey)//下一次扫描的按键值和上一个时钟前是一样的
 	{
 		++keycnt;
 		if(keycnt == 2)           //消抖，如果连续两次读取按键都不变，则有效，返回键值
 			return key;
 	}
 	else
-		keycnt = 0;               //否则计数器归零
+		keycnt = 0;               //否则计数器归零，消除迅速抖动的电平
 	
 	if(key != oldkey)           //如果按键变化，更新按键
 		oldkey = key;

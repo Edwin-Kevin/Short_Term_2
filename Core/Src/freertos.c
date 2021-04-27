@@ -226,7 +226,9 @@ void StartMainTask(void *argument)
 				num[2] = (tic / 100) % 10;
 				num[3] = (tic / 10) % 10;
 				
-				if(num[2] == 1 || num[2] == 3 || num[2] == 5)
+				if((num[2] == 1 || num[2] == 3 || num[2] == 5) && mpuwarn == 1)
+					Beep(100,num[2]);
+				if((num[2] == 2 || num[2] == 4 || num[2] == 6) && tempwarn == 1)
 					Beep(100,num[2]);
 			}
 		}
@@ -251,12 +253,37 @@ void StartMainTask(void *argument)
 void StartKeyTask(void *argument)
 {
   /* USER CODE BEGIN StartKeyTask */
+	static uint32_t K1234_tick = 0;
+	static uint8_t K1234_cnt = 0;
   /* Infinite loop */
   for(;;)
   {
-		uint8_t key = ScanKey();
+		uint8_t key = ScanKey();  //获取按键值
 		if (key > 0)
 			printf("%02X\n",key);   //在串口上输出按键值
+		
+		if(key == (KEY1 | KEY2 | KEY3 | KEY4) && (mpuwarn || tempwarn))
+		{
+			if(K1234_tick == 0)
+				K1234_tick = osKernelGetTickCount();
+			else 
+				if(osKernelGetTickCount() == K1234_tick + 1000)
+				{
+					if(K1234_cnt < 2)   //cnt记录了new了几次timing
+					{
+						K1234_tick = osKernelGetTickCount();
+						K1234_cnt ++;
+					}
+					else
+					{
+						mpuwarn = tempwarn = 0;
+						K1234_tick = 0;
+						K1234_cnt = 0;
+					}
+				}
+		}
+		else
+			K1234_tick = K1234_cnt = 0;
 		
 		switch(g_ws)
 		{
@@ -424,7 +451,7 @@ void StartDataTask(void *argument)
 				MPU_getdata();
 				printf("axyz:%6d %6d %6d,gxyz:%6d %6d %6d\n",ax,ay,az,gx,gy,gz);
 				
-				if(gx * gx + gy * gy + gz * gz > 2000)
+				if(ax * ax + ay * ay + az * az > 400000000)
 				{
 					if(++warcnt >= 3)
 					{
@@ -515,7 +542,7 @@ void DrawGUI1(void)
 	GUI_DispStringAt("数据曲线",0,13);
 	GUI_DispStringAt("无线通信",0,26);
 	GUI_DispStringAt("参数设置",0,39);
-	GUI_DispStringAt("K1︽  K2《  K3》  K4︾",0,52);
+	GUI_DispStringAt("K1︽  K2《 K3》  K4︾",0,52);
 	
 	GUI_DrawHLine(52,0,128);
 	GUI_DrawVLine(48,0,52);
@@ -537,9 +564,9 @@ void DrawGUI1(void)
 		if(ax > 0)
 			GUI_FillRect(70,13,70 + ax * 55 /32768,16);
 		else if(ax < 0)
+			GUI_DrawRect(70,30,70 + ax * 55 /32768,33);
 		sprintf(buf,"ay:%6d",ay);
 		GUI_DispStringAt(buf,50,17);
-			GUI_DrawRect(70,30,70 + ax * 55 /32768,33);
 		if(ay > 0)
 			GUI_FillRect(70,30,70 + ay * 55 /32768,33);
 		else if(ay < 0)
