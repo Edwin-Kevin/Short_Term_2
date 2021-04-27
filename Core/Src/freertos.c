@@ -276,53 +276,56 @@ void StartKeyTask(void *argument)
 		else
 			K1234_tick = 0;
 		
-		switch(g_ws)
+		if((mpuwarn || tempwarn) == 0)
 		{
-			case WS_LOGO:
-				if(key == KEY5)       //按下KEY5就直接进入主界面，计时器归零
-				{
-					g_ws = WS_GUI1;
-					intick = 0;
+			switch(g_ws)
+			{
+				case WS_LOGO:
+					if(key == KEY5)       //按下KEY5就直接进入主界面，计时器归零
+					{
+						g_ws = WS_GUI1;
+						intick = 0;
+					}
+					break;
+				case WS_GUI1:
+					if(key == KEY1)
+						g_ws = WS_GUI4;
+					else if(key == KEY4)
+						g_ws = WS_GUI2;
+					else if(key == KEY2)
+					{
+						if(pageidx > 0)
+							--pageidx;
+					}
+					else if(key == KEY3)
+					{
+						if(pageidx < 2)
+							++pageidx;
+					}
+					break;
+				case WS_GUI2:
+					if(key == KEY1)
+						g_ws = WS_GUI1;
+					else if(key == KEY4)
+						g_ws = WS_GUI3;
+					break;
+				case WS_GUI3:
+					if(key == KEY1)
+						g_ws = WS_GUI2;
+					else if(key == KEY4)
+						g_ws = WS_GUI4;
+					break;
+				case WS_GUI4:
+					if(key == KEY1)
+						g_ws = WS_GUI3;
+					else if(key == KEY4)
+						g_ws = WS_GUI1;
+					break;
+				default:
+					if(key == KEY6)       //按下KEY6返回启动界面
+						g_ws = WS_LOGO;
+					break;
 				}
-				break;
-			case WS_GUI1:
-				if(key == KEY1)
-					g_ws = WS_GUI4;
-			  else if(key == KEY4)
-					g_ws = WS_GUI2;
-				else if(key == KEY2)
-				{
-					if(pageidx > 0)
-						--pageidx;
-				}
-				else if(key == KEY3)
-				{
-					if(pageidx < 2)
-						++pageidx;
-				}
-				break;
-			case WS_GUI2:
-				if(key == KEY1)
-					g_ws = WS_GUI1;
-			  else if(key == KEY4)
-					g_ws = WS_GUI3;
-				break;
-			case WS_GUI3:
-				if(key == KEY1)
-					g_ws = WS_GUI2;
-			  else if(key == KEY4)
-					g_ws = WS_GUI4;
-				break;
-			case WS_GUI4:
-				if(key == KEY1)
-					g_ws = WS_GUI3;
-			  else if(key == KEY4)
-					g_ws = WS_GUI1;
-				break;
-			default:
-				if(key == KEY6)       //按下KEY6返回启动界面
-					g_ws = WS_LOGO;
-				break;
 		}
     osDelay(1);
   }
