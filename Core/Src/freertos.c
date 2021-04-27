@@ -266,24 +266,15 @@ void StartKeyTask(void *argument)
 		{
 			if(K1234_tick == 0)
 				K1234_tick = osKernelGetTickCount();
-			else 
-				if(osKernelGetTickCount() == K1234_tick + 1000)
+			else
+				if(osKernelGetTickCount() == K1234_tick + 3000)
 				{
-					if(K1234_cnt < 2)   //cnt记录了new了几次timing
-					{
-						K1234_tick = osKernelGetTickCount();
-						K1234_cnt ++;
-					}
-					else
-					{
-						mpuwarn = tempwarn = 0;
-						K1234_tick = 0;
-						K1234_cnt = 0;
-					}
+					mpuwarn = tempwarn = 0;
+					K1234_tick = 0;
 				}
 		}
 		else
-			K1234_tick = K1234_cnt = 0;
+			K1234_tick = 0;
 		
 		switch(g_ws)
 		{
