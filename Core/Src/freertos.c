@@ -73,6 +73,8 @@ uint8_t mpuwarn = 0;
 
 uint8_t pageidx = 0;
 uint32_t warntick = 0;
+uint32_t K1234_tick = 0;
+
 
 /* USER CODE END Variables */
 /* Definitions for MainTask */
@@ -253,8 +255,6 @@ void StartMainTask(void *argument)
 void StartKeyTask(void *argument)
 {
   /* USER CODE BEGIN StartKeyTask */
-	static uint32_t K1234_tick = 0;
-	static uint8_t K1234_cnt = 0;
   /* Infinite loop */
   for(;;)
   {
@@ -262,19 +262,6 @@ void StartKeyTask(void *argument)
 		if (key > 0)
 			printf("%02X\n",key);   //在串口上输出按键值
 		
-		if(key == (KEY1 | KEY2 | KEY3 | KEY4) && (mpuwarn || tempwarn))
-		{
-			if(K1234_tick == 0)
-				K1234_tick = osKernelGetTickCount();
-			else
-				if(osKernelGetTickCount() == K1234_tick + 3000)
-				{
-					mpuwarn = tempwarn = 0;
-					K1234_tick = 0;
-				}
-		}
-		else
-			K1234_tick = 0;
 		
 		if((mpuwarn || tempwarn) == 0)
 		{
@@ -327,6 +314,28 @@ void StartKeyTask(void *argument)
 					break;
 				}
 		}
+		else
+		{
+			if(key == (KEY1 | KEY2 | KEY3 | KEY4))
+			{
+				
+				if(K1234_tick == 0)
+					K1234_tick = osKernelGetTickCount();
+				else
+					if(osKernelGetTickCount() >= K1234_tick + 3000)
+					{
+						mpuwarn = tempwarn = 0;
+						K1234_tick = 0;
+						warntick = 0;
+					}
+			}
+			else
+			{
+				if(key > 0)
+					K1234_tick = 0;
+			}
+		}
+				
     osDelay(1);
   }
   /* USER CODE END StartKeyTask */
@@ -427,9 +436,9 @@ void StartDataTask(void *argument)
 			if(ft < 125)
 			{
 				temp = ft;
-				printf("temp:%.1f\n",temp);
+//				printf("temp:%.1f\n",temp);
 				
-				if(temp >= 28)
+				if(temp >= 50)
 				{
 					tempwarn = 1;
 //					warntick = osKernelGetTickCount();
@@ -443,7 +452,7 @@ void StartDataTask(void *argument)
 			{
 				mputick = osKernelGetTickCount();
 				MPU_getdata();
-				printf("axyz:%6d %6d %6d,gxyz:%6d %6d %6d\n",ax,ay,az,gx,gy,gz);
+//				printf("axyz:%6d %6d %6d,gxyz:%6d %6d %6d\n",ax,ay,az,gx,gy,gz);
 				
 				if(ax * ax + ay * ay + az * az > 400000000)
 				{

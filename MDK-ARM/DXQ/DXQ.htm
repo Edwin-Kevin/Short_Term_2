@@ -3,9 +3,9 @@
 <title>Static Call Graph - [DXQ\DXQ.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image DXQ\DXQ.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Tue Apr 27 15:40:21 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Fri Apr 30 10:57:34 2021
 <BR><P>
-<H3>Maximum Stack Usage =        360 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        344 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 StartDataTask &rArr; MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 <P>
@@ -553,8 +553,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9f]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartDataTask
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_getdata
+<BR><BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_getdata
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI1
 </UL>
 
@@ -1710,18 +1709,16 @@ Global Symbols
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartMainTask
 </UL>
 
-<P><STRONG><a name="[62]"></a>StartDataTask</STRONG> (Thumb, 364 bytes, Stack size 16 bytes, freertos.o(.text.StartDataTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = StartDataTask &rArr; MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[62]"></a>StartDataTask</STRONG> (Thumb, 292 bytes, Stack size 0 bytes, freertos.o(.text.StartDataTask))
+<BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = StartDataTask &rArr; MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 <LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ds18b20_read
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ds18b20_init
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_init
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_getdata
-<LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.text.MX_FREERTOS_Init)
 </UL>
@@ -1738,7 +1735,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.text.MX_FREERTOS_Init)
 </UL>
-<P><STRONG><a name="[5f]"></a>StartKeyTask</STRONG> (Thumb, 292 bytes, Stack size 0 bytes, freertos.o(.text.StartKeyTask))
+<P><STRONG><a name="[5f]"></a>StartKeyTask</STRONG> (Thumb, 316 bytes, Stack size 0 bytes, freertos.o(.text.StartKeyTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = StartKeyTask &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
@@ -1873,8 +1870,8 @@ Global Symbols
 <P><STRONG><a name="[137]"></a>dmp_enable_6x_lp_quat</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, inv_mpu_dmp_motion_driver.o(.text.dmp_enable_6x_lp_quat))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = dmp_enable_6x_lp_quat &rArr; mpu_write_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 </UL>
 <BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
@@ -1882,7 +1879,8 @@ Global Symbols
 <P><STRONG><a name="[110]"></a>dmp_enable_feature</STRONG> (Thumb, 470 bytes, Stack size 40 bytes, inv_mpu_dmp_motion_driver.o(.text.dmp_enable_feature))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = dmp_enable_feature &rArr; dmp_set_tap_thresh &rArr; mpu_write_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 <LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_tap_time_multi
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_tap_time
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_tap_thresh
@@ -1894,7 +1892,6 @@ Global Symbols
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_lp_quat
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_gyro_cal
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_6x_lp_quat
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
 <BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_init
 </UL>
@@ -1910,14 +1907,14 @@ Global Symbols
 <P><STRONG><a name="[143]"></a>dmp_enable_lp_quat</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, inv_mpu_dmp_motion_driver.o(.text.dmp_enable_lp_quat))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = dmp_enable_lp_quat &rArr; mpu_write_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 </UL>
 <BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
 
 <P><STRONG><a name="[10d]"></a>dmp_load_motion_driver_firmware</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, inv_mpu_dmp_motion_driver.o(.text.dmp_load_motion_driver_firmware))
-<BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = dmp_load_motion_driver_firmware &rArr; mpu_load_firmware &rArr; mpu_read_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = dmp_load_motion_driver_firmware &rArr; mpu_load_firmware &rArr; mpu_write_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_load_firmware
 </UL>
@@ -1937,8 +1934,8 @@ Global Symbols
 <P><STRONG><a name="[147]"></a>dmp_set_accel_bias</STRONG> (Thumb, 190 bytes, Stack size 32 bytes, inv_mpu_dmp_motion_driver.o(.text.dmp_set_accel_bias))
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = dmp_set_accel_bias &rArr; mpu_write_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_sens
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_sens
 </UL>
 <BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_self_test
 </UL>
@@ -2010,8 +2007,8 @@ Global Symbols
 <P><STRONG><a name="[13b]"></a>dmp_set_tap_thresh</STRONG> (Thumb, 328 bytes, Stack size 24 bytes, inv_mpu_dmp_motion_driver.o(.text.dmp_set_tap_thresh))
 <BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = dmp_set_tap_thresh &rArr; mpu_write_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_fsr
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_fsr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_enable_feature
 </UL>
@@ -2112,6 +2109,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cWriteBuffer
 </UL>
 <BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
@@ -2126,7 +2124,6 @@ Global Symbols
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_load_firmware
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
 
 <P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, main.o(.text.main))
@@ -2206,12 +2203,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[144]"></a>mpu_load_firmware</STRONG> (Thumb, 198 bytes, Stack size 64 bytes, inv_mpu.o(.text.mpu_load_firmware))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = mpu_load_firmware &rArr; mpu_read_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = mpu_load_firmware &rArr; mpu_write_mem &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_read_mem
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_read_mem
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cwrite
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memcmp
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_load_motion_driver_firmware
 </UL>
@@ -2861,7 +2858,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartKeyTask
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartDataTask
 </UL>
 
 <P><STRONG><a name="[1cd]"></a>__c89printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
