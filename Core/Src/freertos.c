@@ -289,24 +289,32 @@ void StartKeyTask(void *argument)
 						if(pageidx < 2)
 							++pageidx;
 					}
+					else if(key == KEY6)
+						g_ws = WS_LOGO;
 					break;
 				case WS_GUI2:
 					if(key == KEY1)
 						g_ws = WS_GUI1;
 					else if(key == KEY4)
 						g_ws = WS_GUI3;
+					else if(key == KEY6)
+						g_ws = WS_LOGO;					
 					break;
 				case WS_GUI3:
 					if(key == KEY1)
 						g_ws = WS_GUI2;
 					else if(key == KEY4)
 						g_ws = WS_GUI4;
+					else if(key == KEY6)
+						g_ws = WS_LOGO;
 					break;
 				case WS_GUI4:
 					if(key == KEY1)
 						g_ws = WS_GUI3;
 					else if(key == KEY4)
 						g_ws = WS_GUI1;
+					else if(key == KEY6)
+						g_ws = WS_LOGO;
 					break;
 				default:
 					if(key == KEY6)       //按下KEY6返回启动界面
@@ -583,7 +591,24 @@ void DrawGUI1(void)
 	}
 	else if(pageidx == 2)
 	{
-		
+		sprintf(buf,"gx:%6d",gx);
+		GUI_DispStringAt(buf,50,0);
+		if(gx > 0)
+			GUI_FillRect(70,13,70 + gx * 55 /32768,16);
+		else if(gx < 0)
+			GUI_DrawRect(70,30,70 + gx * 55 /32768,33);
+		sprintf(buf,"gy:%6d",gy);
+		GUI_DispStringAt(buf,50,17);
+		if(gy > 0)
+			GUI_FillRect(70,30,70 + gy * 55 /32768,33);
+		else if(gy < 0)
+			GUI_DrawRect(70,13,70 + gy * 55 /32768,16);
+		sprintf(buf,"gz:%6d",gz);
+		GUI_DispStringAt(buf,50,34);
+		if(gz > 0)
+			GUI_FillRect(70,47,70 + gz * 55 /32768,50);
+		else if(gz < 0)
+			GUI_DrawRect(70,47,70 + gz * 55 /32768,50);		
 	}
 	GUI_Update();
 }
