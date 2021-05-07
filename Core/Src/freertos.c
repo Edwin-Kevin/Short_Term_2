@@ -32,7 +32,6 @@
 #include "tim.h"
 #include "DS_18B20.h"
 #include "MPU6050.h"
-#include "string.h"
 
 /* USER CODE END Includes */
 
@@ -48,7 +47,6 @@
 #define WS_GUI2 2
 #define WS_GUI3 3
 #define WS_GUI4 4
-#define MAX_DATA_LEN 77
 extern GUI_FLASH const GUI_FONT GUI_FontHZ_KaiTi_20;  //导入字体库和图片
 extern GUI_FLASH const GUI_FONT GUI_FontHZ_KaiTi_16;
 extern GUI_FLASH const GUI_FONT GUI_FontHZ_SimSun_12;
@@ -76,9 +74,6 @@ uint8_t mpuwarn = 0;
 uint8_t pageidx = 0;
 uint32_t warntick = 0;
 uint32_t K1234_tick = 0;
-uint8_t g_fax_data[MAX_DATA_LEN];
-uint8_t g_fay_data[MAX_DATA_LEN];
-uint8_t g_faz_data[MAX_DATA_LEN];
 
 
 /* USER CODE END Variables */
@@ -428,7 +423,6 @@ void StartDataTask(void *argument)
 	
 	uint8_t mpuok = MPU_init();
 	uint8_t cnt = 0;
-	uint8_t idx = 0;
 	while(cnt++ < 3 && !mpuok)
 	{
 		osDelay(500);
@@ -450,10 +444,12 @@ void StartDataTask(void *argument)
 			if(ft < 125)
 			{
 				temp = ft;
+//				printf("temp:%.1f\n",temp);
 				
-				if(temp >= 50)
+				if(temp >= 30)
 				{
 					tempwarn = 1;
+//					warntick = osKernelGetTickCount();
 				}
 			}
 		}
@@ -464,24 +460,14 @@ void StartDataTask(void *argument)
 			{
 				mputick = osKernelGetTickCount();
 				MPU_getdata();
-				g_fax_data[idx] = 32 - fAX * 20 / 90;
-				g_fay_data[idx] = 32 - fAY * 20 / 180;
-				g_faz_data[idx] = 32 - fAZ * 20 / 180;
-				++idx;
-				if(idx >= MAX_DATA_LEN)
-				{
-					memcpy(g_fax_data,g_fax_data + 1,MAX_DATA_LEN - 1);
-					memcpy(g_fay_data,g_fay_data + 1,MAX_DATA_LEN - 1);
-					memcpy(g_faz_data,g_faz_data + 1,MAX_DATA_LEN - 1);
-					
-					idx = MAX_DATA_LEN - 1;
-				}
+//				printf("axyz:%6d %6d %6d,gxyz:%6d %6d %6d\n",ax,ay,az,gx,gy,gz);
 				
 				if(ax * ax + ay * ay + az * az > 400000000)
 				{
 					if(++warcnt >= 3)
 					{
 						mpuwarn = 1;
+//						warntick = osKernelGetTickCount();
 					}
 				}
 				else
@@ -490,7 +476,7 @@ void StartDataTask(void *argument)
 		}
 			
 		
-    osDelay(20);
+    osDelay(1);
   }
   /* USER CODE END StartDataTask */
 }
