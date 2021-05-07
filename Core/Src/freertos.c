@@ -451,7 +451,7 @@ void StartDataTask(void *argument)
 			{
 				temp = ft;
 				
-				if(temp >= 30)
+				if(temp >= 50)
 				{
 					tempwarn = 1;
 				}
