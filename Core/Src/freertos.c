@@ -446,7 +446,7 @@ void StartDataTask(void *argument)
 				temp = ft;
 //				printf("temp:%.1f\n",temp);
 				
-				if(temp >= 30)
+				if(temp >= 50)
 				{
 					tempwarn = 1;
 //					warntick = osKernelGetTickCount();
