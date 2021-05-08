@@ -731,7 +731,9 @@ void DrawGUI2(void)
 		case 0:
 		  sprintf(str,"ÎÂ¶È:%.1f¡æ",temp);
 		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
-				GUI_DrawLine(51 + i,g_temp_data[i],51 + i + 1,g_temp_data[i + 1]);			
+				GUI_DrawLine(51 + i,g_temp_data[i],51 + i + 1,g_temp_data[i + 1]);		
+		  for(i = 51;i <= 128;i+=2)
+				GUI_DrawPixel(i,22);
 			break;
 		case 1:
 			sprintf(str,"¸©Ñö½Ç:%.1f¡ã",curve_fax);
