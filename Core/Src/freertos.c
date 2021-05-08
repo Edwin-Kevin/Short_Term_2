@@ -492,6 +492,7 @@ void StartDataTask(void *argument)
 	uint8_t cnt = 0;
 	uint8_t idx = 0;
 	uint8_t temp_idx = 0;
+	float ft;
 	while(cnt++ < 3 && !mpuok)
 	{
 		osDelay(500);
@@ -508,12 +509,13 @@ void StartDataTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-		if(osKernelGetTickCount() >= dstick + 500)
+		if(osKernelGetTickCount() >= dstick + 1000)
 		{
 			dstick = osKernelGetTickCount();
-			float ft = ds18b20_read();
-			if(ft < 125)
-			{
+			ft = ds18b20_read();
+    }			
+		if(ft < 125)
+		{
 				temp = ft;
 				if(osKernelGetTickCount() >= dscurvetick + curve_speed)
 				{
@@ -529,12 +531,12 @@ void StartDataTask(void *argument)
 					}
 				}
 
-				if(temp >= 40)
+				if(temp >= 35)
 				{
 					tempwarn = 1;
 				}
-			}
 		}
+		
 		
 		if(mpuok)
 		{

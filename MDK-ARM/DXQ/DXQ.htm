@@ -3,9 +3,9 @@
 <title>Static Call Graph - [DXQ\DXQ.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image DXQ\DXQ.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Sat May  8 22:14:55 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Sat May  8 23:22:01 2021
 <BR><P>
-<H3>Maximum Stack Usage =        368 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        360 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 StartDataTask &rArr; MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 <P>
@@ -1741,8 +1741,8 @@ Global Symbols
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartMainTask
 </UL>
 
-<P><STRONG><a name="[62]"></a>StartDataTask</STRONG> (Thumb, 728 bytes, Stack size 24 bytes, freertos.o(.text.StartDataTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = StartDataTask &rArr; MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[62]"></a>StartDataTask</STRONG> (Thumb, 716 bytes, Stack size 16 bytes, freertos.o(.text.StartDataTask))
+<BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = StartDataTask &rArr; MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
