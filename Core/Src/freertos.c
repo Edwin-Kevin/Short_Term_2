@@ -523,7 +523,7 @@ void StartDataTask(void *argument)
 					temp_idx = MAX_DATA_LEN - 1;
 				}
 
-				if(temp >= 99)
+				if(temp >= 40)
 				{
 					tempwarn = 1;
 				}
