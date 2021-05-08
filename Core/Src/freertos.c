@@ -84,6 +84,7 @@ uint32_t beeptick = 0;
 float curve_fax = 0;
 float curve_fay = 0;
 float curve_faz = 0;
+float curve_temp = 0;
 
 
 /* USER CODE END Variables */
@@ -498,6 +499,7 @@ void StartDataTask(void *argument)
 	}
 	
 	uint32_t dstick = 0;
+	uint32_t dscurvetick = 0;
 	uint32_t mputick = 0;
 	uint32_t mpucurvetick = 0;
 	
@@ -506,21 +508,25 @@ void StartDataTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-		if(osKernelGetTickCount() >= dstick + curve_speed)
+		if(osKernelGetTickCount() >= dstick + 500)
 		{
 			dstick = osKernelGetTickCount();
 			float ft = ds18b20_read();
 			if(ft < 125)
 			{
 				temp = ft;
-				g_temp_data[temp_idx] = 32 - (temp - 30) * 2;
-				++temp_idx;
-				
-				if(temp_idx >= MAX_DATA_LEN)
+				if(osKernelGetTickCount() >= dscurvetick + curve_speed)
 				{
-					memcpy(g_temp_data,g_temp_data + 1,MAX_DATA_LEN - 1);
-					
-					temp_idx = MAX_DATA_LEN - 1;
+					dscurvetick = osKernelGetTickCount();
+					curve_temp = temp;
+					g_temp_data[temp_idx] = 32 - (curve_temp - 30) * 2;
+					++temp_idx;
+					if(temp_idx >= MAX_DATA_LEN)
+					{
+						memcpy(g_temp_data,g_temp_data + 1,MAX_DATA_LEN - 1);
+						
+						temp_idx = MAX_DATA_LEN - 1;
+					}
 				}
 
 				if(temp >= 40)
