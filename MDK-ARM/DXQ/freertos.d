@@ -47,4 +47,5 @@ dxq/freertos.o: ..\Core\Src\freertos.c \
   ..\Drivers\DS18B20\DS_18B20.h ..\Drivers\MPU6050\MPU6050.h \
   ..\Drivers\MPU6050\inv_mpu.h \
   ..\Drivers\MPU6050\inv_mpu_dmp_motion_driver.h \
-  ..\Drivers\MPU6050\STM32_I2C.h
+  ..\Drivers\MPU6050\STM32_I2C.h \
+  F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h

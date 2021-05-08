@@ -69,16 +69,21 @@ uint32_t intick = 0;   //用于记录时间戳
 
 volatile float temp = 0;
 
-uint32_t beeptick = 0;
 uint8_t tempwarn = 0;
 uint8_t mpuwarn = 0;
 
 uint8_t pageidx = 0;
-uint32_t warntick = 0;
-uint32_t K1234_tick = 0;
 uint8_t g_fax_data[MAX_DATA_LEN];
 uint8_t g_fay_data[MAX_DATA_LEN];
 uint8_t g_faz_data[MAX_DATA_LEN];
+uint8_t g_temp_data[MAX_DATA_LEN];
+uint16_t curve_speed = 1000;
+uint32_t warntick = 0;
+uint32_t K1234_tick = 0;
+uint32_t beeptick = 0;
+float curve_fax = 0;
+float curve_fay = 0;
+float curve_faz = 0;
 
 
 /* USER CODE END Variables */
@@ -281,9 +286,15 @@ void StartKeyTask(void *argument)
 					break;
 				case WS_GUI1:
 					if(key == KEY1)
+					{
 						g_ws = WS_GUI4;
+						pageidx = 0;
+					}
 					else if(key == KEY4)
+					{
 						g_ws = WS_GUI2;
+						pageidx = 0;
+					}
 					else if(key == KEY2)
 					{
 						if(pageidx > 0)
@@ -295,35 +306,85 @@ void StartKeyTask(void *argument)
 							++pageidx;
 					}
 					else if(key == KEY6)
+					{
 						g_ws = WS_LOGO;
+						pageidx = 0;
+					}
 					break;
 				case WS_GUI2:
 					if(key == KEY1)
+					{
 						g_ws = WS_GUI1;
+						pageidx = 0;
+					}
 					else if(key == KEY4)
+					{
 						g_ws = WS_GUI3;
+						pageidx = 0;
+					}
+					else if(key == KEY2)
+					{
+						if(pageidx > 0)
+							--pageidx;
+					}
+					else if(key == KEY3)
+					{
+						if(pageidx < 3)
+							++pageidx;
+					}
 					else if(key == KEY6)
-						g_ws = WS_LOGO;					
+					{
+						g_ws = WS_LOGO;	
+						pageidx = 0;
+					}
+          else if(key == KEY5)
+					{
+						if(curve_speed == 50)
+							curve_speed = 1000;
+						else
+							curve_speed = 50;
+					}						
 					break;
 				case WS_GUI3:
 					if(key == KEY1)
+					{
 						g_ws = WS_GUI2;
+						pageidx = 0;
+					}
 					else if(key == KEY4)
+					{
 						g_ws = WS_GUI4;
+						pageidx = 0;
+					}
 					else if(key == KEY6)
+					{
 						g_ws = WS_LOGO;
+						pageidx = 0;
+					}
 					break;
 				case WS_GUI4:
 					if(key == KEY1)
+					{
 						g_ws = WS_GUI3;
+						pageidx = 0;
+					}
 					else if(key == KEY4)
+					{
 						g_ws = WS_GUI1;
+						pageidx = 0;
+					}
 					else if(key == KEY6)
+					{
 						g_ws = WS_LOGO;
+						pageidx = 0;
+					}
 					break;
 				default:
-					if(key == KEY6)       //按下KEY6返回启动界面
+					if(key == KEY6)
+					{
 						g_ws = WS_LOGO;
+						pageidx = 0;
+					}
 					break;
 				}
 		}
@@ -429,6 +490,7 @@ void StartDataTask(void *argument)
 	uint8_t mpuok = MPU_init();
 	uint8_t cnt = 0;
 	uint8_t idx = 0;
+	uint8_t temp_idx = 0;
 	while(cnt++ < 3 && !mpuok)
 	{
 		osDelay(500);
@@ -437,21 +499,31 @@ void StartDataTask(void *argument)
 	
 	uint32_t dstick = 0;
 	uint32_t mputick = 0;
+	uint32_t mpucurvetick = 0;
 	
 	int warcnt = 0;
 	
   /* Infinite loop */
   for(;;)
   {
-		if(osKernelGetTickCount() >= dstick + 1000)
+		if(osKernelGetTickCount() >= dstick + curve_speed)
 		{
 			dstick = osKernelGetTickCount();
 			float ft = ds18b20_read();
 			if(ft < 125)
 			{
 				temp = ft;
+				g_temp_data[temp_idx] = 32 - (temp - 30) * 2;
+				++temp_idx;
 				
-				if(temp >= 30)
+				if(temp_idx >= MAX_DATA_LEN)
+				{
+					memcpy(g_temp_data,g_temp_data + 1,MAX_DATA_LEN - 1);
+					
+					temp_idx = MAX_DATA_LEN - 1;
+				}
+
+				if(temp >= 99)
 				{
 					tempwarn = 1;
 				}
@@ -464,17 +536,24 @@ void StartDataTask(void *argument)
 			{
 				mputick = osKernelGetTickCount();
 				MPU_getdata();
-				g_fax_data[idx] = 32 - fAX * 20 / 90;
-				g_fay_data[idx] = 32 - fAY * 20 / 180;
-				g_faz_data[idx] = 32 - fAZ * 20 / 180;
-				++idx;
-				if(idx >= MAX_DATA_LEN)
+				if(osKernelGetTickCount() >= mpucurvetick + curve_speed)
 				{
-					memcpy(g_fax_data,g_fax_data + 1,MAX_DATA_LEN - 1);
-					memcpy(g_fay_data,g_fay_data + 1,MAX_DATA_LEN - 1);
-					memcpy(g_faz_data,g_faz_data + 1,MAX_DATA_LEN - 1);
-					
-					idx = MAX_DATA_LEN - 1;
+					mpucurvetick = osKernelGetTickCount();
+					curve_fax = fAX;
+					curve_fay = fAY;
+					curve_faz = fAZ;
+					g_fax_data[idx] = 32 - fAX * 20 / 90;
+					g_fay_data[idx] = 32 - fAY * 20 / 180;
+					g_faz_data[idx] = 32 - fAZ * 20 / 180;
+					++idx;
+					if(idx >= MAX_DATA_LEN)
+					{
+						memcpy(g_fax_data,g_fax_data + 1,MAX_DATA_LEN - 1);
+						memcpy(g_fay_data,g_fay_data + 1,MAX_DATA_LEN - 1);
+						memcpy(g_faz_data,g_faz_data + 1,MAX_DATA_LEN - 1);
+						
+						idx = MAX_DATA_LEN - 1;
+					}
 				}
 				
 				if(ax * ax + ay * ay + az * az > 400000000)
@@ -548,7 +627,7 @@ void DrawLogo(void)
 		else if((osKernelGetTickCount() <= intick + 8000))  //5秒初-7秒末
 		{
 			GUI_Clear();
-			GUI_DrawBitmap(&bmz,0,0);     //绘图，本代码未验证，请下载到单片机测试一下
+			GUI_DrawBitmap(&bmz,0,0);
 			GUI_DrawBitmap(&bmh,64,0);
 			GUI_Update();
 		}
@@ -629,6 +708,8 @@ void DrawGUI1(void)
 
 void DrawGUI2(void)
 {
+	char str[30];
+	
 	GUI_Clear();
 	GUI_SetFont(&GUI_FontHZ_SimSun_12);
 	GUI_DispStringAt("实时监测",0,0);
@@ -637,10 +718,43 @@ void DrawGUI2(void)
 	GUI_SetColor(GUI_COLOR_WHITE);
 	GUI_DispStringAt("无线通信",0,26);
 	GUI_DispStringAt("参数设置",0,39);
-	GUI_DispStringAt("K1︽  K2《  K3》  K4︾",0,52);
+	GUI_DispStringAt("K1︽  K2《 K3》  K4︾",0,52);
 	
 	GUI_DrawHLine(52,0,128);
 	GUI_DrawVLine(48,0,52);
+	
+	GUI_DrawHLine(32,51,128);
+	
+	uint8_t i;
+	switch(pageidx)
+	{
+		case 0:
+		  sprintf(str,"温度:%.1f℃",temp);
+		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
+				GUI_DrawLine(51 + i,g_temp_data[i],51 + i + 1,g_temp_data[i + 1]);			
+			break;
+		case 1:
+			sprintf(str,"俯仰角:%.1f°",curve_fax);
+		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
+				GUI_DrawLine(51 + i,g_fax_data[i],51 + i + 1,g_fax_data[i + 1]);
+			break;
+		case 2:
+			sprintf(str,"横滚角:%.1f°",curve_fay);
+		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
+				GUI_DrawLine(51 + i,g_fay_data[i],51 + i + 1,g_fay_data[i + 1]);
+			break;
+		case 3:
+			sprintf(str,"航向角:%.1f°",curve_faz);
+		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
+				GUI_DrawLine(51 + i,g_faz_data[i],51 + i +1,g_faz_data[i + 1]);
+			break;
+		default:
+			sprintf(str,"俯仰角:%.1f°",curve_fax);
+		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
+				GUI_DrawLine(51 + i,g_fax_data[i],51 + i +1,g_fax_data[i + 1]);
+			break;
+	}
+	GUI_DispStringAt(str,51,0);
 	
 	GUI_Update();
 }
@@ -655,7 +769,7 @@ void DrawGUI3(void)
 	GUI_DispStringAt("无线通信",0,26);
 	GUI_SetColor(GUI_COLOR_WHITE);
 	GUI_DispStringAt("参数设置",0,39);
-	GUI_DispStringAt("K1︽  K2《  K3》  K4︾",0,52);
+	GUI_DispStringAt("K1︽  K2《 K3》  K4︾",0,52);
 	
 	GUI_DrawHLine(52,0,128);
 	GUI_DrawVLine(48,0,52);
@@ -673,7 +787,7 @@ void DrawGUI4(void)
 	GUI_SetColor(GUI_COLOR_BLACK);
 	GUI_DispStringAt("参数设置",0,39);
 	GUI_SetColor(GUI_COLOR_WHITE);
-	GUI_DispStringAt("K1︽  K2《  K3》  K4︾",0,52);
+	GUI_DispStringAt("K1︽  K2《 K3》  K4︾",0,52);
 	
 	GUI_DrawHLine(52,0,128);
 	GUI_DrawVLine(48,0,52);
