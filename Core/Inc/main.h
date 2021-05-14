@@ -106,6 +106,10 @@ void Error_Handler(void);
 #define A1_GPIO_Port GPIOC
 #define A2_Pin GPIO_PIN_11
 #define A2_GPIO_Port GPIOC
+#define BT_EN_Pin GPIO_PIN_2
+#define BT_EN_GPIO_Port GPIOD
+#define BT_STATE_Pin GPIO_PIN_3
+#define BT_STATE_GPIO_Port GPIOD
 #define BEEP_Pin GPIO_PIN_4
 #define BEEP_GPIO_Port GPIOB
 #define I2C_SCL_Pin GPIO_PIN_6

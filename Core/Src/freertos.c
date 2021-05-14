@@ -33,6 +33,7 @@
 #include "DS_18B20.h"
 #include "MPU6050.h"
 #include "string.h"
+#include "Display_3D.h"
 
 /* USER CODE END Includes */
 
@@ -86,6 +87,75 @@ float curve_fay = 0;
 float curve_faz = 0;
 float curve_temp = 0;
 
+unsigned char TAB_Kai[128] = {	/* ¿¬ 0xbfac*/
+________,________,________,________,
+________,________,________,________,
+________,________,________,________,
+________,________,________,________,
+_____XXX,____XXX_,____XXX_,________,
+_____XXX,____XX__,____XX__,________,
+_____XXX,____XX__,____XX__,________,
+_____XXX,____XX__,____XX__,__XX____,
+_____XXX,____XXXX,XXX_XX__,_XXXX___,
+_____XXX,____XX__,____XX_X,XXX_____,
+_XXXXXXX,XXXXXX__,____XXXX,X_______,
+_____XXX,____XX__,____XXXX,________,
+_____XXX,____XX__,XXX_XX__,________,
+_____XXX,____XXXX,XXX_XX__,___X____,
+_____XXX,X__XXXXX,X___XX__,___XX___,
+____XXXX,XX_XXX__,____XXX_,__XXX___,
+____XXXX,XXX_____,__X__XXX,XXXX____,
+___XXXXX,_XX_____,_XXX____,________,
+___XXXXX,_XX_____,_XX_____,________,
+__XXXXXX,________,_XX_____,________,
+_XXX_XXX,_____XXX,XXXXXXXX,XX______,
+_XXX_XXX,_____XX_,________,XX______,
+_XX__XXX,_____XX_,________,XX______,
+_____XXX,_____XX_,________,XX______,
+_____XXX,_____XXX,XXXXXXXX,XX______,
+_____XXX,_____XX_,________,XX______,
+_____XXX,_____XX_,________,XX______,
+_____XXX,_____XX_,________,XX______,
+_____XXX,_____XXX,XXXXXXXX,XX______,
+_____XXX,_____XX_,________,XX______,
+_____XXX,_____XX_,________,XX______,
+________,________,________,________
+};
+
+unsigned char TAB_Wen[128] = {	/* ÎÄ 0xcec4*/
+________,________,________,________,
+________,________,________,________,
+________,______X_,________,________,
+________,______XX,________,________,
+________,_______X,X_______,________,
+________,_______X,XX______,________,
+________,_______X,XX______,___X____,
+________,________,X_______,__XXX___,
+__XXXXXX,XXXXXXXX,XXXXXXXX,XXXXXX__,
+________,__X_____,____XXX_,________,
+________,__X_____,____XX__,________,
+________,__X_____,____XX__,________,
+________,__XX____,___XXX__,________,
+________,___X____,___XXX__,________,
+________,___X____,___XX___,________,
+________,___XX___,__XXX___,________,
+________,____X___,__XXX___,________,
+________,____XX__,__XX____,________,
+________,____XX__,_XXX____,________,
+________,_____XX_,_XX_____,________,
+________,_____XXX,XXX_____,________,
+________,______XX,XX______,________,
+________,______XX,X_______,________,
+________,______XX,XX______,________,
+________,_____XXX,XXX_____,________,
+________,___XXX__,_XXXX___,________,
+________,__XXX___,__XXXXX_,________,
+________,XXXX____,____XXXX,XXX_____,
+______XX,XX______,______XX,XXXXXX__,
+____XXX_,________,________,XXXX____,
+__XX____,________,________,________,
+________,________,________,________
+};
 
 /* USER CODE END Variables */
 /* Definitions for MainTask */
@@ -99,28 +169,28 @@ const osThreadAttr_t MainTask_attributes = {
 osThreadId_t KeyTaskHandle;
 const osThreadAttr_t KeyTask_attributes = {
   .name = "KeyTask",
-  .stack_size = 256 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for UartTask */
 osThreadId_t UartTaskHandle;
 const osThreadAttr_t UartTask_attributes = {
   .name = "UartTask",
-  .stack_size = 256 * 4,
+  .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for GUITask */
 osThreadId_t GUITaskHandle;
 const osThreadAttr_t GUITask_attributes = {
   .name = "GUITask",
-  .stack_size = 256 * 4,
+  .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for DataTask */
 osThreadId_t DataTaskHandle;
 const osThreadAttr_t DataTask_attributes = {
   .name = "DataTask",
-  .stack_size = 128 * 4,
+  .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 
@@ -276,6 +346,7 @@ void StartKeyTask(void *argument)
 		
 		if((mpuwarn || tempwarn) == 0)
 		{
+			K1234_tick = 0;
 			switch(g_ws)
 			{
 				case WS_LOGO:
@@ -330,7 +401,7 @@ void StartKeyTask(void *argument)
 					}
 					else if(key == KEY3)
 					{
-						if(pageidx < 3)
+						if(pageidx < 4)
 							++pageidx;
 					}
 					else if(key == KEY6)
@@ -411,7 +482,7 @@ void StartKeyTask(void *argument)
 			}
 		}
 				
-    osDelay(1);
+    osDelay(10);
   }
   /* USER CODE END StartKeyTask */
 }
@@ -509,7 +580,7 @@ void StartDataTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-		if(osKernelGetTickCount() >= dstick + 1000)
+		if(osKernelGetTickCount() >= dstick + 500)
 		{
 			dstick = osKernelGetTickCount();
 			ft = ds18b20_read();
@@ -731,12 +802,17 @@ void DrawGUI2(void)
 	GUI_DrawHLine(52,0,128);
 	GUI_DrawVLine(48,0,52);
 	
-	GUI_DrawHLine(32,51,128);
 	
 	uint8_t i;
+	int sw = 128 - 48;
+	int sh = 64 - 12 - 12;
+	int ox = 48;
+	int oy = 12 + sh;
+	
 	switch(pageidx)
 	{
 		case 0:
+			GUI_DrawHLine(32,51,128);
 		  sprintf(str,"ÎÂ¶È:%.1f¡æ",temp);
 		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
 				GUI_DrawLine(51 + i,g_temp_data[i],51 + i + 1,g_temp_data[i + 1]);		
@@ -744,19 +820,28 @@ void DrawGUI2(void)
 				GUI_DrawPixel(i,22);
 			break;
 		case 1:
+	    GUI_DrawHLine(32,51,128);
 			sprintf(str,"¸©Ñö½Ç:%.1f¡ã",curve_fax);
 		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
 				GUI_DrawLine(51 + i,g_fax_data[i],51 + i + 1,g_fax_data[i + 1]);
 			break;
 		case 2:
+			GUI_DrawHLine(32,51,128);
 			sprintf(str,"ºá¹ö½Ç:%.1f¡ã",curve_fay);
 		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
 				GUI_DrawLine(51 + i,g_fay_data[i],51 + i + 1,g_fay_data[i + 1]);
 			break;
 		case 3:
+			GUI_DrawHLine(32,51,128);
 			sprintf(str,"º½Ïò½Ç:%.1f¡ã",curve_faz);
 		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
 				GUI_DrawLine(51 + i,g_faz_data[i],51 + i +1,g_faz_data[i + 1]);
+			break;
+		case 4:
+			ox = (48 + 128) / 2;
+		  oy = (12 + 40) / 2 + 2;
+		  RateCube(fAX,fAY,fAZ,GUI_COLOR_WHITE,ox,oy);
+//		  RotatePic32X32(TAB_Kai,fAX,fAY,fAZ,GUI_COLOR_WHITE,ox - 16,oy - 16,16);
 			break;
 		default:
 			sprintf(str,"¸©Ñö½Ç:%.1f¡ã",curve_fax);
