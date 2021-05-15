@@ -75,6 +75,7 @@ volatile float temp = 0;
 uint8_t tempwarn = 0;
 uint8_t mpuwarn = 0;
 uint8_t g_bUping = 0;
+uint16_t templimit = 35;
 
 uint8_t pageidx = 0;
 uint8_t g_fax_data[MAX_DATA_LEN];
@@ -640,7 +641,7 @@ void StartDataTask(void *argument)
 					}
 				}
 
-				if(temp >= 35)
+				if(temp >= templimit)
 				{
 					printf("temp:%.1f\n",temp);
 					tempwarn = 1;
@@ -868,7 +869,7 @@ void DrawGUI2(void)
 		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
 				GUI_DrawLine(51 + i,g_temp_data[i],51 + i + 1,g_temp_data[i + 1]);		
 		  for(i = 51;i <= 128;i+=2)
-				GUI_DrawPixel(i,22);
+				GUI_DrawPixel(i,52 - (templimit - 20) * 2);
 			break;
 		case 1:
 	    GUI_DrawHLine(32,51,128);
