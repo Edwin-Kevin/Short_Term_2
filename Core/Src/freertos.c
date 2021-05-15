@@ -34,6 +34,8 @@
 #include "MPU6050.h"
 #include "string.h"
 #include "Display_3D.h"
+#include "comm.h"
+#include "ESP01.h"
 
 /* USER CODE END Includes */
 
@@ -72,6 +74,7 @@ volatile float temp = 0;
 
 uint8_t tempwarn = 0;
 uint8_t mpuwarn = 0;
+uint8_t g_bUping = 0;
 
 uint8_t pageidx = 0;
 uint8_t g_fax_data[MAX_DATA_LEN];
@@ -205,6 +208,7 @@ void DrawGUI4(void);
 void Beep(int time,int tune);
 void BeepDone(void);
 void DispSeg(uint8_t num[4],uint8_t dot);
+void InitESP8266(void);
 
 /* USER CODE END FunctionPrototypes */
 
@@ -392,6 +396,7 @@ void StartKeyTask(void *argument)
 					else if(key == KEY4)
 					{
 						g_ws = WS_GUI3;
+						InitESP8266();
 						pageidx = 0;
 					}
 					else if(key == KEY2)
@@ -428,6 +433,13 @@ void StartKeyTask(void *argument)
 						g_ws = WS_GUI4;
 						pageidx = 0;
 					}
+					else if(key == KEY5)
+					{
+						if(pageidx == 0)
+						{
+							InitESP8266();
+						}
+					}
 					else if(key == KEY6)
 					{
 						g_ws = WS_LOGO;
@@ -439,6 +451,7 @@ void StartKeyTask(void *argument)
 					{
 						g_ws = WS_GUI3;
 						pageidx = 0;
+						InitESP8266();
 					}
 					else if(key == KEY4)
 					{
@@ -497,9 +510,24 @@ void StartKeyTask(void *argument)
 void StartUartTask(void *argument)
 {
   /* USER CODE BEGIN StartUartTask */
+	StartRecvUart1();
+	ESP_Init();
   /* Infinite loop */
   for(;;)
   {
+		if(recv1_len > 0)
+		{
+			printf("%s",recv1_buff);
+			recv1_len = 0;
+		}
+		
+		ESP_Proc();
+		if(esp8266.recv_len > 0)
+		{
+			printf("%s",esp8266.recv_data);
+			esp8266.recv_len = 0;
+		}
+		
     osDelay(1);
   }
   /* USER CODE END StartUartTask */
@@ -564,16 +592,18 @@ void StartDataTask(void *argument)
 	uint8_t idx = 0;
 	uint8_t temp_idx = 0;
 	float ft;
-	while(cnt++ < 3 && !mpuok)
+	while(cnt++ < 5 && !mpuok)
 	{
 		osDelay(500);
-		mpuok = mpu_init();
+		mpuok = MPU_init();
 	}
 	
 	uint32_t dstick = 0;
 	uint32_t dscurvetick = 0;
 	uint32_t mputick = 0;
 	uint32_t mpucurvetick = 0;
+	uint32_t uptick=0;
+	uint32_t g_upstep=0;
 	
 	int warcnt = 0;
 	
@@ -604,6 +634,7 @@ void StartDataTask(void *argument)
 
 				if(temp >= 35)
 				{
+					printf("temp:%.1f\n",temp);
 					tempwarn = 1;
 				}
 		}
@@ -637,18 +668,30 @@ void StartDataTask(void *argument)
 				
 				if(ax * ax + ay * ay + az * az > 400000000)
 				{
-					if(++warcnt >= 3)
+					if(++warcnt >= 5)
 					{
 						mpuwarn = 1;
+						printf("axyz:%6d %6d %6d, gxyz:%6d %6d %6d\n",ax,ay,az,gx,gy,gz);
 					}
 				}
 				else
 					warcnt = 0;
 			}
 		}
-			
 		
-    osDelay(20);
+		if(g_bUping && esp8266.bconn)
+		{
+			if(osKernelGetTickCount() >= uptick + g_upstep)
+			{
+				uptick = osKernelGetTickCount();
+				
+				char buf[100];
+				sprintf(buf,"T:%4.1f, A:%6d %6d %6d,G:%6d %6d %6d, F:%5.1f %5.1f %5.1f, W:%d\n",
+				        temp,ax,ay,az,gx,gy,gz,fAX,fAY,fAZ,(tempwarn ? 1 : 0) + (mpuwarn ? 2 : 0));
+				USendStr(&huart6,(uint8_t *)buf,strlen(buf));
+			}
+		}	
+    osDelay(1);
   }
   /* USER CODE END StartDataTask */
 }
@@ -856,6 +899,7 @@ void DrawGUI2(void)
 
 void DrawGUI3(void)
 {
+	char buf[30];
 	GUI_Clear();
 	GUI_SetFont(&GUI_FontHZ_SimSun_12);
 	GUI_DispStringAt("实时监测",0,0);
@@ -866,6 +910,13 @@ void DrawGUI3(void)
 	GUI_DispStringAt("参数设置",0,39);
 	GUI_DispStringAt("K1︽  K2《 K3》  K4︾",0,52);
 	
+	GUI_DispStringAt((char *)(esp8266.ssid),50,0);
+	GUI_DispStringAt(TCP_SERVER,50,12);
+	sprintf(buf,"端口:%d:",TCP_PORT);
+	GUI_DispStringAt(buf,50,24);
+	GUI_DispStringAt(esp8266.bconn ? "OK" : "ERR",50,36);	
+	GUI_DispStringAt(g_bUping ? "上传中" : "已关闭",80,36);
+
 	GUI_DrawHLine(52,0,128);
 	GUI_DrawVLine(48,0,52);
 	
@@ -922,6 +973,28 @@ void DispSeg(uint8_t num[4],uint8_t dot)
 	{
 		Write595(i,num[i],(dot == (i + 1)) ? 1 : 0);
 		osDelay(1);
+	}
+}
+
+void InitESP8266(void)
+{
+	ESP_SetCIPMode(0); 
+	if(ESP_IsOK())
+	{
+		ESP_SetMode(1);
+		if(ESP_JoinAP(AP_NAME,AP_PSW))
+		{
+			ESP_GetIPAddr();       //获取IP地址
+			ESP_SetTCPServer(0,0); //关闭TCP服务器
+			ESP_SetCIPMux(0);      //单连接模式
+			printf("Station ip:%s\n",esp8266.st_addr);
+			
+			if(ESP_ClientToServer(TCP_SERVER,TCP_PORT))  //连接服务器
+			{
+				ESP_SetCIPMode(1);  //开启透传
+				printf("ESP Init OK!\n");
+			}
+		}
 	}
 }
 /* USER CODE END Application */

@@ -1,4 +1,4 @@
-dxq/stm32f4xx_it.o: ..\Core\Src\stm32f4xx_it.c ..\Core\Inc\main.h \
+dxq/comm.o: ..\Drivers\COMM\comm.c ..\Drivers\COMM\comm.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
   ..\Core\Inc\stm32f4xx_hal_conf.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
@@ -31,8 +31,7 @@ dxq/stm32f4xx_it.o: ..\Core\Src\stm32f4xx_it.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
-  ..\Core\Inc\stm32f4xx_it.h ..\Drivers\COMM\COMM.h ..\Core\Inc\usart.h \
-  ..\Core\Inc\main.h F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  ..\Core\Inc\usart.h ..\Core\Inc\main.h \
+  F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
-  ..\Drivers\COMM\ESP01.h ..\Drivers\COMM\comm.h
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h

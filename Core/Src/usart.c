@@ -21,13 +21,13 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
-#include <stdio.h>
+//#include <stdio.h>
 
-// printf到调试窗口
-int fputc(int ch, FILE *f) {
-	HAL_UART_Transmit(&huart1 , (uint8_t *)&ch, 1, 0xFFFF);
-  return(ch);
-}
+//// printf到调试窗口
+//int fputc(int ch, FILE *f) {
+//	HAL_UART_Transmit(&huart1 , (uint8_t *)&ch, 1, 0xFFFF);
+//  return(ch);
+//}
 
 /* USER CODE END 0 */
 

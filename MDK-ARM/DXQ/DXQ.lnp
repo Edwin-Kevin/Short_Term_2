@@ -53,6 +53,8 @@
 "dxq\stm32_i2c.o"
 "dxq\3d_rotateapplication.o"
 "dxq\transform_3d.o"
+"dxq\comm.o"
+"dxq\esp01.o"
 --library_type=microlib --strict --scatter "DXQ\DXQ.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

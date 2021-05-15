@@ -1551,6 +1551,21 @@ __X__X_X,_X______,
 _XX__XX_,__X_____
 };
 
+GUI_FLASH  const unsigned char acFontHZSimSun_12_b1d5[24] = {	/* 闭 0xb1d5*/
+_X______,________,
+__X__XXX,XXX_____,
+________,__X_____,
+_X____X_,__X_____,
+_X____X_,__X_____,
+_X_XXXXX,X_X_____,
+_X____X_,__X_____,
+_X___XX_,__X_____,
+_X__X_X_,__X_____,
+_X_X__X_,__X_____,
+_X___XX_,__X_____,
+_X______,XXX_____
+};
+
 GUI_FLASH  const unsigned char acFontHZSimSun_12_b2ce[24] = {	/* 参 0xb2ce*/
 ___X____,________,
 __X_____,X_______,
@@ -1581,6 +1596,21 @@ X__X_X__,__X_____,
 __X___X_,_XX_____
 };
 
+GUI_FLASH  const unsigned char acFontHZSimSun_12_b4ab[24] = {	/* 传 0xb4ab*/
+___X___X,________,
+___X___X,________,
+__X_XXXX,XX______,
+__X___X_,________,
+_XX___X_,________,
+X_XXXXXX,XXX_____,
+__X__X__,________,
+__X__XXX,XX______,
+__X_____,_X______,
+__X__XX_,X_______,
+__X____X,X_______,
+__X_____,_X______
+};
+
 GUI_FLASH  const unsigned char acFontHZSimSun_12_b4f3[24] = {	/* 大 0xb4f3*/
 _____X__,________,
 _____X__,________,
@@ -1594,21 +1624,6 @@ ___X___X,________,
 ___X___X,________,
 __X_____,X_______,
 XX______,_XX_____
-};
-
-GUI_FLASH  const unsigned char acFontHZSimSun_12_b5b1[24] = {	/* 当 0xb5b1*/
-_____X__,________,
-_X___X__,_X______,
-__X__X__,X_______,
-_____X__,________,
-_XXXXXXX,XX______,
-________,_X______,
-________,_X______,
-__XXXXXX,XX______,
-________,_X______,
-________,_X______,
-_XXXXXXX,XX______,
-________,_X______
 };
 
 GUI_FLASH  const unsigned char acFontHZSimSun_12_b5e7[24] = {	/* 电 0xb5e7*/
@@ -1656,6 +1671,21 @@ _X____XX,________,
 X__XXX__,XXX_____
 };
 
+GUI_FLASH  const unsigned char acFontHZSimSun_12_b6cb[24] = {	/* 端 0xb6cb*/
+X______X,________,
+_X__X__X,__X_____,
+____X__X,__X_____,
+XXX_XXXX,XXX_____,
+________,________,
+X_X_XXXX,XXX_____,
+X_X____X,________,
+X_X_XXXX,XXX_____,
+_X__X_X_,X_X_____,
+__X_X_X_,X_X_____,
+XX__X_X_,X_X_____,
+____X___,_XX_____
+};
+
 GUI_FLASH  const unsigned char acFontHZSimSun_12_b7f1[24] = {	/* 否 0xb7f1*/
 XXXXXXXX,XXX_____,
 _____X__,________,
@@ -1684,6 +1714,21 @@ _X_X_X_X,_X______,
 _X_X_X__,XX______,
 _X_X_X__,_X______,
 _XX__X__,XX______
+};
+
+GUI_FLASH  const unsigned char acFontHZSimSun_12_b9d8[24] = {	/* 关 0xb9d8*/
+__X_____,X_______,
+___X___X,________,
+________,________,
+_XXXXXXX,XX______,
+_____X__,________,
+_____X__,________,
+XXXXXXXX,XXX_____,
+_____X__,________,
+____X_X_,________,
+___X___X,________,
+__X_____,X_______,
+XX______,_XX_____
 };
 
 GUI_FLASH  const unsigned char acFontHZSimSun_12_b9f6[24] = {	/* 滚 0xb9f6*/
@@ -1836,19 +1881,19 @@ __X_____,X_______,
 __X_____,X_______
 };
 
-GUI_FLASH  const unsigned char acFontHZSimSun_12_c7b0[24] = {	/* 前 0xc7b0*/
-__X_____,X_______,
-___X___X,________,
-XXXXXXXX,XXX_____,
+GUI_FLASH  const unsigned char acFontHZSimSun_12_bfda[24] = {	/* 口 0xbfda*/
 ________,________,
-_XXXXX__,_X______,
-_X___X_X,_X______,
-_XXXXX_X,_X______,
-_X___X_X,_X______,
-_XXXXX_X,_X______,
-_X___X_X,_X______,
-_X___X__,_X______,
-_X__XX__,XX______
+_XXXXXXX,XX______,
+_X______,_X______,
+_X______,_X______,
+_X______,_X______,
+_X______,_X______,
+_X______,_X______,
+_X______,_X______,
+_X______,_X______,
+_XXXXXXX,XX______,
+_X______,_X______,
+________,________
 };
 
 GUI_FLASH  const unsigned char acFontHZSimSun_12_c7fa[24] = {	/* 曲 0xc7fa*/
@@ -1864,6 +1909,21 @@ _X__X__X,__X_____,
 _X__X__X,__X_____,
 _XXXXXXX,XXX_____,
 _X______,__X_____
+};
+
+GUI_FLASH  const unsigned char acFontHZSimSun_12_c9cf[24] = {	/* 上 0xc9cf*/
+____X___,________,
+____X___,________,
+____X___,________,
+____X___,________,
+____XXXX,XX______,
+____X___,________,
+____X___,________,
+____X___,________,
+____X___,________,
+____X___,________,
+____X___,________,
+XXXXXXXX,XXX_____
 };
 
 GUI_FLASH  const unsigned char acFontHZSimSun_12_c9e8[24] = {	/* 设 0xc9e8*/
@@ -2061,6 +2121,21 @@ __X____X,________,
 __X____X,________
 };
 
+GUI_FLASH  const unsigned char acFontHZSimSun_12_d2d1[24] = {	/* 已 0xd2d1*/
+________,________,
+_XXXXXXX,XX______,
+________,_X______,
+________,_X______,
+_X______,_X______,
+_X______,_X______,
+_XXXXXXX,XX______,
+_X______,________,
+_X______,________,
+_X______,__X_____,
+_X______,__X_____,
+__XXXXXX,XXX_____
+};
+
 GUI_FLASH  const unsigned char acFontHZSimSun_12_d4f8[24] = {	/* 曾 0xd4f8*/
 __X_____,X_______,
 ___X___X,________,
@@ -2104,6 +2179,21 @@ __X_____,X_______,
 __X__X__,X_______,
 __X__X__,X_______,
 XXXXXXXX,XXX_____
+};
+
+GUI_FLASH  const unsigned char acFontHZSimSun_12_d6d0[24] = {	/* 中 0xd6d0*/
+_____X__,________,
+_____X__,________,
+_____X__,________,
+_XXXXXXX,XX______,
+_X___X__,_X______,
+_X___X__,_X______,
+_X___X__,_X______,
+_XXXXXXX,XX______,
+_X___X__,_X______,
+_____X__,________,
+_____X__,________,
+_____X__,________
 };
 
 GUI_FLASH  const unsigned char acFontHZSimSun_12_d6dd[24] = {	/* 州 0xd6dd*/
@@ -2255,46 +2345,52 @@ GUI_FLASH const GUI_CHARINFO GUI_FontHZSimSun_12_CharInfo[] = {
 { 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_a6e6},/* ︽ 100 */
 { 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_a6e7},/* ︾ 101 */
 { 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b1a8},/* 报 102 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b2ce},/* 参 103 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b2e2},/* 测 104 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b4f3},/* 大 105 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b5b1},/* 当 106 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b5e7},/* 电 107 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b6af},/* 动 108 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b6c8},/* 度 109 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b7f1},/* 否 110 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b8a9},/* 俯 111 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b9f6},/* 滚 112 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_babc},/* 杭 113 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_babd},/* 航 114 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bae1},/* 横 115 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bcbc},/* 技 116 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bce0},/* 监 117 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bdc7},/* 角 118 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_beaf},/* 警 119 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bedd},/* 据 120 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bfc6},/* 科 121 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_c7b0},/* 前 122 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_c7fa},/* 曲 123 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_c9e8},/* 设 124 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cab1},/* 时 125 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cab5},/* 实 126 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cac7},/* 是 127 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cafd},/* 数 128 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cda8},/* 通 129 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cec2},/* 温 130 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cede},/* 无 131 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cfdf},/* 线 132 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cff2},/* 向 133 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d0c5},/* 信 134 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d1a7},/* 学 135 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d1f6},/* 仰 136 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d4f8},/* 曾 137 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d5f0},/* 震 138 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d6c3},/* 置 139 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d6dd},/* 州 140 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d7d3},/* 子 141 */
-{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d8b9},/* 毓 142 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b1d5},/* 闭 103 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b2ce},/* 参 104 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b2e2},/* 测 105 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b4ab},/* 传 106 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b4f3},/* 大 107 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b5e7},/* 电 108 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b6af},/* 动 109 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b6c8},/* 度 110 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b6cb},/* 端 111 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b7f1},/* 否 112 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b8a9},/* 俯 113 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b9d8},/* 关 114 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_b9f6},/* 滚 115 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_babc},/* 杭 116 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_babd},/* 航 117 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bae1},/* 横 118 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bcbc},/* 技 119 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bce0},/* 监 120 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bdc7},/* 角 121 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_beaf},/* 警 122 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bedd},/* 据 123 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bfc6},/* 科 124 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_bfda},/* 口 125 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_c7fa},/* 曲 126 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_c9cf},/* 上 127 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_c9e8},/* 设 128 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cab1},/* 时 129 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cab5},/* 实 130 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cac7},/* 是 131 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cafd},/* 数 132 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cda8},/* 通 133 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cec2},/* 温 134 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cede},/* 无 135 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cfdf},/* 线 136 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_cff2},/* 向 137 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d0c5},/* 信 138 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d1a7},/* 学 139 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d1f6},/* 仰 140 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d2d1},/* 已 141 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d4f8},/* 曾 142 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d5f0},/* 震 143 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d6c3},/* 置 144 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d6d0},/* 中 145 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d6dd},/* 州 146 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d7d3},/* 子 147 */
+{ 12, 12, 2, (void GUI_FLASH *)&acFontHZSimSun_12_d8b9},/* 毓 148 */
 };
 
 /*毓--毓*/
@@ -2302,281 +2398,323 @@ GUI_FLASH const GUI_CHARINFO GUI_FontHZSimSun_12_CharInfo[] = {
 GUI_FLASH const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd8b9= {
 	0xd8b9,
 	0xd8b9,
-	&GUI_FontHZSimSun_12_CharInfo[142],
+	&GUI_FontHZSimSun_12_CharInfo[148],
 	(void *)0 
 };
 /*子--子*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd7d3= {
 	0xd7d3,
 	0xd7d3,
-	&GUI_FontHZSimSun_12_CharInfo[141],
+	&GUI_FontHZSimSun_12_CharInfo[147],
 	(void *)&GUI_FontHZSimSun_12_Propd8b9 
 };
 /*州--州*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd6dd= {
 	0xd6dd,
 	0xd6dd,
-	&GUI_FontHZSimSun_12_CharInfo[140],
+	&GUI_FontHZSimSun_12_CharInfo[146],
 	(void *)&GUI_FontHZSimSun_12_Propd7d3 
+};
+/*中--中*/
+GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd6d0= {
+	0xd6d0,
+	0xd6d0,
+	&GUI_FontHZSimSun_12_CharInfo[145],
+	(void *)&GUI_FontHZSimSun_12_Propd6dd 
 };
 /*置--置*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd6c3= {
 	0xd6c3,
 	0xd6c3,
-	&GUI_FontHZSimSun_12_CharInfo[139],
-	(void *)&GUI_FontHZSimSun_12_Propd6dd 
+	&GUI_FontHZSimSun_12_CharInfo[144],
+	(void *)&GUI_FontHZSimSun_12_Propd6d0 
 };
 /*震--震*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd5f0= {
 	0xd5f0,
 	0xd5f0,
-	&GUI_FontHZSimSun_12_CharInfo[138],
+	&GUI_FontHZSimSun_12_CharInfo[143],
 	(void *)&GUI_FontHZSimSun_12_Propd6c3 
 };
 /*曾--曾*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd4f8= {
 	0xd4f8,
 	0xd4f8,
-	&GUI_FontHZSimSun_12_CharInfo[137],
+	&GUI_FontHZSimSun_12_CharInfo[142],
 	(void *)&GUI_FontHZSimSun_12_Propd5f0 
+};
+/*已--已*/
+GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd2d1= {
+	0xd2d1,
+	0xd2d1,
+	&GUI_FontHZSimSun_12_CharInfo[141],
+	(void *)&GUI_FontHZSimSun_12_Propd4f8 
 };
 /*仰--仰*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd1f6= {
 	0xd1f6,
 	0xd1f6,
-	&GUI_FontHZSimSun_12_CharInfo[136],
-	(void *)&GUI_FontHZSimSun_12_Propd4f8 
+	&GUI_FontHZSimSun_12_CharInfo[140],
+	(void *)&GUI_FontHZSimSun_12_Propd2d1 
 };
 /*学--学*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd1a7= {
 	0xd1a7,
 	0xd1a7,
-	&GUI_FontHZSimSun_12_CharInfo[135],
+	&GUI_FontHZSimSun_12_CharInfo[139],
 	(void *)&GUI_FontHZSimSun_12_Propd1f6 
 };
 /*信--信*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propd0c5= {
 	0xd0c5,
 	0xd0c5,
-	&GUI_FontHZSimSun_12_CharInfo[134],
+	&GUI_FontHZSimSun_12_CharInfo[138],
 	(void *)&GUI_FontHZSimSun_12_Propd1a7 
 };
 /*向--向*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcff2= {
 	0xcff2,
 	0xcff2,
-	&GUI_FontHZSimSun_12_CharInfo[133],
+	&GUI_FontHZSimSun_12_CharInfo[137],
 	(void *)&GUI_FontHZSimSun_12_Propd0c5 
 };
 /*线--线*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcfdf= {
 	0xcfdf,
 	0xcfdf,
-	&GUI_FontHZSimSun_12_CharInfo[132],
+	&GUI_FontHZSimSun_12_CharInfo[136],
 	(void *)&GUI_FontHZSimSun_12_Propcff2 
 };
 /*无--无*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcede= {
 	0xcede,
 	0xcede,
-	&GUI_FontHZSimSun_12_CharInfo[131],
+	&GUI_FontHZSimSun_12_CharInfo[135],
 	(void *)&GUI_FontHZSimSun_12_Propcfdf 
 };
 /*温--温*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcec2= {
 	0xcec2,
 	0xcec2,
-	&GUI_FontHZSimSun_12_CharInfo[130],
+	&GUI_FontHZSimSun_12_CharInfo[134],
 	(void *)&GUI_FontHZSimSun_12_Propcede 
 };
 /*通--通*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcda8= {
 	0xcda8,
 	0xcda8,
-	&GUI_FontHZSimSun_12_CharInfo[129],
+	&GUI_FontHZSimSun_12_CharInfo[133],
 	(void *)&GUI_FontHZSimSun_12_Propcec2 
 };
 /*数--数*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcafd= {
 	0xcafd,
 	0xcafd,
-	&GUI_FontHZSimSun_12_CharInfo[128],
+	&GUI_FontHZSimSun_12_CharInfo[132],
 	(void *)&GUI_FontHZSimSun_12_Propcda8 
 };
 /*是--是*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcac7= {
 	0xcac7,
 	0xcac7,
-	&GUI_FontHZSimSun_12_CharInfo[127],
+	&GUI_FontHZSimSun_12_CharInfo[131],
 	(void *)&GUI_FontHZSimSun_12_Propcafd 
 };
 /*实--实*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcab5= {
 	0xcab5,
 	0xcab5,
-	&GUI_FontHZSimSun_12_CharInfo[126],
+	&GUI_FontHZSimSun_12_CharInfo[130],
 	(void *)&GUI_FontHZSimSun_12_Propcac7 
 };
 /*时--时*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propcab1= {
 	0xcab1,
 	0xcab1,
-	&GUI_FontHZSimSun_12_CharInfo[125],
+	&GUI_FontHZSimSun_12_CharInfo[129],
 	(void *)&GUI_FontHZSimSun_12_Propcab5 
 };
 /*设--设*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propc9e8= {
 	0xc9e8,
 	0xc9e8,
-	&GUI_FontHZSimSun_12_CharInfo[124],
+	&GUI_FontHZSimSun_12_CharInfo[128],
 	(void *)&GUI_FontHZSimSun_12_Propcab1 
+};
+/*上--上*/
+GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propc9cf= {
+	0xc9cf,
+	0xc9cf,
+	&GUI_FontHZSimSun_12_CharInfo[127],
+	(void *)&GUI_FontHZSimSun_12_Propc9e8 
 };
 /*曲--曲*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propc7fa= {
 	0xc7fa,
 	0xc7fa,
-	&GUI_FontHZSimSun_12_CharInfo[123],
-	(void *)&GUI_FontHZSimSun_12_Propc9e8 
+	&GUI_FontHZSimSun_12_CharInfo[126],
+	(void *)&GUI_FontHZSimSun_12_Propc9cf 
 };
-/*前--前*/
-GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propc7b0= {
-	0xc7b0,
-	0xc7b0,
-	&GUI_FontHZSimSun_12_CharInfo[122],
+/*口--口*/
+GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbfda= {
+	0xbfda,
+	0xbfda,
+	&GUI_FontHZSimSun_12_CharInfo[125],
 	(void *)&GUI_FontHZSimSun_12_Propc7fa 
 };
 /*科--科*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbfc6= {
 	0xbfc6,
 	0xbfc6,
-	&GUI_FontHZSimSun_12_CharInfo[121],
-	(void *)&GUI_FontHZSimSun_12_Propc7b0 
+	&GUI_FontHZSimSun_12_CharInfo[124],
+	(void *)&GUI_FontHZSimSun_12_Propbfda 
 };
 /*据--据*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbedd= {
 	0xbedd,
 	0xbedd,
-	&GUI_FontHZSimSun_12_CharInfo[120],
+	&GUI_FontHZSimSun_12_CharInfo[123],
 	(void *)&GUI_FontHZSimSun_12_Propbfc6 
 };
 /*警--警*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbeaf= {
 	0xbeaf,
 	0xbeaf,
-	&GUI_FontHZSimSun_12_CharInfo[119],
+	&GUI_FontHZSimSun_12_CharInfo[122],
 	(void *)&GUI_FontHZSimSun_12_Propbedd 
 };
 /*角--角*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbdc7= {
 	0xbdc7,
 	0xbdc7,
-	&GUI_FontHZSimSun_12_CharInfo[118],
+	&GUI_FontHZSimSun_12_CharInfo[121],
 	(void *)&GUI_FontHZSimSun_12_Propbeaf 
 };
 /*监--监*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbce0= {
 	0xbce0,
 	0xbce0,
-	&GUI_FontHZSimSun_12_CharInfo[117],
+	&GUI_FontHZSimSun_12_CharInfo[120],
 	(void *)&GUI_FontHZSimSun_12_Propbdc7 
 };
 /*技--技*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbcbc= {
 	0xbcbc,
 	0xbcbc,
-	&GUI_FontHZSimSun_12_CharInfo[116],
+	&GUI_FontHZSimSun_12_CharInfo[119],
 	(void *)&GUI_FontHZSimSun_12_Propbce0 
 };
 /*横--横*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbae1= {
 	0xbae1,
 	0xbae1,
-	&GUI_FontHZSimSun_12_CharInfo[115],
+	&GUI_FontHZSimSun_12_CharInfo[118],
 	(void *)&GUI_FontHZSimSun_12_Propbcbc 
 };
 /*杭--航*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propbabc= {
 	0xbabc,
 	0xbabd,
-	&GUI_FontHZSimSun_12_CharInfo[113],
+	&GUI_FontHZSimSun_12_CharInfo[116],
 	(void *)&GUI_FontHZSimSun_12_Propbae1 
 };
 /*滚--滚*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb9f6= {
 	0xb9f6,
 	0xb9f6,
-	&GUI_FontHZSimSun_12_CharInfo[112],
+	&GUI_FontHZSimSun_12_CharInfo[115],
 	(void *)&GUI_FontHZSimSun_12_Propbabc 
+};
+/*关--关*/
+GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb9d8= {
+	0xb9d8,
+	0xb9d8,
+	&GUI_FontHZSimSun_12_CharInfo[114],
+	(void *)&GUI_FontHZSimSun_12_Propb9f6 
 };
 /*俯--俯*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb8a9= {
 	0xb8a9,
 	0xb8a9,
-	&GUI_FontHZSimSun_12_CharInfo[111],
-	(void *)&GUI_FontHZSimSun_12_Propb9f6 
+	&GUI_FontHZSimSun_12_CharInfo[113],
+	(void *)&GUI_FontHZSimSun_12_Propb9d8 
 };
 /*否--否*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb7f1= {
 	0xb7f1,
 	0xb7f1,
-	&GUI_FontHZSimSun_12_CharInfo[110],
+	&GUI_FontHZSimSun_12_CharInfo[112],
 	(void *)&GUI_FontHZSimSun_12_Propb8a9 
+};
+/*端--端*/
+GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb6cb= {
+	0xb6cb,
+	0xb6cb,
+	&GUI_FontHZSimSun_12_CharInfo[111],
+	(void *)&GUI_FontHZSimSun_12_Propb7f1 
 };
 /*度--度*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb6c8= {
 	0xb6c8,
 	0xb6c8,
-	&GUI_FontHZSimSun_12_CharInfo[109],
-	(void *)&GUI_FontHZSimSun_12_Propb7f1 
+	&GUI_FontHZSimSun_12_CharInfo[110],
+	(void *)&GUI_FontHZSimSun_12_Propb6cb 
 };
 /*动--动*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb6af= {
 	0xb6af,
 	0xb6af,
-	&GUI_FontHZSimSun_12_CharInfo[108],
+	&GUI_FontHZSimSun_12_CharInfo[109],
 	(void *)&GUI_FontHZSimSun_12_Propb6c8 
 };
 /*电--电*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb5e7= {
 	0xb5e7,
 	0xb5e7,
-	&GUI_FontHZSimSun_12_CharInfo[107],
+	&GUI_FontHZSimSun_12_CharInfo[108],
 	(void *)&GUI_FontHZSimSun_12_Propb6af 
-};
-/*当--当*/
-GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb5b1= {
-	0xb5b1,
-	0xb5b1,
-	&GUI_FontHZSimSun_12_CharInfo[106],
-	(void *)&GUI_FontHZSimSun_12_Propb5e7 
 };
 /*大--大*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb4f3= {
 	0xb4f3,
 	0xb4f3,
-	&GUI_FontHZSimSun_12_CharInfo[105],
-	(void *)&GUI_FontHZSimSun_12_Propb5b1 
+	&GUI_FontHZSimSun_12_CharInfo[107],
+	(void *)&GUI_FontHZSimSun_12_Propb5e7 
+};
+/*传--传*/
+GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb4ab= {
+	0xb4ab,
+	0xb4ab,
+	&GUI_FontHZSimSun_12_CharInfo[106],
+	(void *)&GUI_FontHZSimSun_12_Propb4f3 
 };
 /*测--测*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb2e2= {
 	0xb2e2,
 	0xb2e2,
-	&GUI_FontHZSimSun_12_CharInfo[104],
-	(void *)&GUI_FontHZSimSun_12_Propb4f3 
+	&GUI_FontHZSimSun_12_CharInfo[105],
+	(void *)&GUI_FontHZSimSun_12_Propb4ab 
 };
 /*参--参*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb2ce= {
 	0xb2ce,
 	0xb2ce,
-	&GUI_FontHZSimSun_12_CharInfo[103],
+	&GUI_FontHZSimSun_12_CharInfo[104],
 	(void *)&GUI_FontHZSimSun_12_Propb2e2 
+};
+/*闭--闭*/
+GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb1d5= {
+	0xb1d5,
+	0xb1d5,
+	&GUI_FontHZSimSun_12_CharInfo[103],
+	(void *)&GUI_FontHZSimSun_12_Propb2ce 
 };
 /*报--报*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propb1a8= {
 	0xb1a8,
 	0xb1a8,
 	&GUI_FontHZSimSun_12_CharInfo[102],
-	(void *)&GUI_FontHZSimSun_12_Propb2ce 
+	(void *)&GUI_FontHZSimSun_12_Propb1d5 
 };
 /*︽--︾*/
 GUI_FLASH  const GUI_FONT_PROP GUI_FontHZSimSun_12_Propa6e6= {

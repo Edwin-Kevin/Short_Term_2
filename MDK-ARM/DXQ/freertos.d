@@ -49,4 +49,7 @@ dxq/freertos.o: ..\Core\Src\freertos.c \
   ..\Drivers\MPU6050\inv_mpu_dmp_motion_driver.h \
   ..\Drivers\MPU6050\STM32_I2C.h \
   F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
-  ..\Drivers\3DCube\Display_3D.h
+  ..\Drivers\3DCube\Display_3D.h ..\Drivers\COMM\comm.h \
+  ..\Core\Inc\usart.h \
+  ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
+  ..\Drivers\COMM\ESP01.h ..\Drivers\COMM\comm.h

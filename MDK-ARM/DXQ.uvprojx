@@ -336,10 +336,10 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>-Wno-invalid-source-encoding</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\Drivers\OLED;..\Drivers\DS18B20;..\Drivers\MPU6050;..\Drivers\3DCube</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;..\Drivers\OLED;..\Drivers\DS18B20;..\Drivers\MPU6050;..\Drivers\3DCube;..\Drivers\COMM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -834,6 +834,31 @@
               <FileName>Transform_3D.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Drivers\3DCube\Transform_3D.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>COMM</GroupName>
+          <Files>
+            <File>
+              <FileName>comm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\COMM\comm.c</FilePath>
+            </File>
+            <File>
+              <FileName>comm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\COMM\comm.h</FilePath>
+            </File>
+            <File>
+              <FileName>ESP01.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\COMM\ESP01.c</FilePath>
+            </File>
+            <File>
+              <FileName>ESP01.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Drivers\COMM\ESP01.h</FilePath>
             </File>
           </Files>
         </Group>
