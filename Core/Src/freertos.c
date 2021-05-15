@@ -433,6 +433,14 @@ void StartKeyTask(void *argument)
 						g_ws = WS_GUI4;
 						pageidx = 0;
 					}
+					else if(key == KEY2)
+					{
+						g_bUping = 0;
+					}
+					else if(key == KEY3)
+					{
+						g_bUping = 1;
+					}					
 					else if(key == KEY5)
 					{
 						if(pageidx == 0)
