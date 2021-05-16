@@ -3,11 +3,11 @@
 <title>Static Call Graph - [DXQ\DXQ.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image DXQ\DXQ.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Sat May 15 20:37:22 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Sun May 16 13:17:17 2021
 <BR><P>
-<H3>Maximum Stack Usage =        888 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        896 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-StartGUITask &rArr; DrawGUI2 &rArr; RateCube &rArr; Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+StartGUITask &rArr; DrawGUI2 &rArr; RateCube &rArr; Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 <P>
 <H3>
 Mutually Recursive functions
@@ -595,6 +595,7 @@ Global Symbols
 <P><STRONG><a name="[a7]"></a>__aeabi_f2d</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, f2d.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartDataTask
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_getdata
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI4
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI2
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI1
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Rotate_3D
@@ -665,10 +666,10 @@ Global Symbols
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 
 <P><STRONG><a name="[86]"></a>__aeabi_d2ulz</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, dfixul.o(.text), UNUSED)
@@ -715,11 +716,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8a]"></a>Beep</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, freertos.o(.text.Beep))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Beep &rArr; osKernelGetTickCount &rArr; xTaskGetTickCountFromISR
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Beep &rArr; HAL_TIM_PWM_Start &rArr; TIM_CCxChannelCmd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start
+<BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Start
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WSLogo
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartMainTask
@@ -728,8 +729,8 @@ Global Symbols
 <P><STRONG><a name="[8e]"></a>BeepDone</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, freertos.o(.text.BeepDone))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = BeepDone &rArr; HAL_TIM_PWM_Stop &rArr; TIM_CCxChannelCmd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop
+<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_Stop
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartMainTask
 </UL>
@@ -766,8 +767,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = DS18B20Init &rArr; DS18B20WriteByte &rArr; delayUS_DWT
 </UL>
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20WriteByte
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ds18b20_init
 </UL>
@@ -785,8 +786,8 @@ Global Symbols
 <P><STRONG><a name="[98]"></a>DS18B20StartConvert</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, ds_18b20.o(.text.DS18B20StartConvert))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = DS18B20StartConvert &rArr; DS18B20WriteByte &rArr; delayUS_DWT
 </UL>
-<BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
-<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20WriteByte
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20WriteByte
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ds18b20_read
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ds18b20_init
@@ -821,8 +822,8 @@ Global Symbols
 <P><STRONG><a name="[9b]"></a>DispSeg</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, freertos.o(.text.DispSeg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = DispSeg &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Write595
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Write595
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartMainTask
 </UL>
@@ -853,8 +854,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartGUITask
 </UL>
 
-<P><STRONG><a name="[ac]"></a>DrawGUI2</STRONG> (Thumb, 632 bytes, Stack size 48 bytes, freertos.o(.text.DrawGUI2))
-<BR><BR>[Stack]<UL><LI>Max Depth = 888<LI>Call Chain = DrawGUI2 &rArr; RateCube &rArr; Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[ac]"></a>DrawGUI2</STRONG> (Thumb, 848 bytes, Stack size 56 bytes, freertos.o(.text.DrawGUI2))
+<BR><BR>[Stack]<UL><LI>Max Depth = 896<LI>Call Chain = DrawGUI2 &rArr; RateCube &rArr; Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RateCube
@@ -887,16 +888,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartGUITask
 </UL>
 
-<P><STRONG><a name="[b1]"></a>DrawGUI4</STRONG> (Thumb, 136 bytes, Stack size 8 bytes, freertos.o(.text.DrawGUI4))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = DrawGUI4 &rArr; GUI_Clear &rArr; GUI_ClearRect &rArr; SSD1306_DrawFilledRectangle &rArr; SSD1306_DrawLine &rArr; SSD1306_DrawPixel
+<P><STRONG><a name="[b1]"></a>DrawGUI4</STRONG> (Thumb, 412 bytes, Stack size 40 bytes, freertos.o(.text.DrawGUI4))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = DrawGUI4 &rArr; GUI_Clear &rArr; GUI_ClearRect &rArr; SSD1306_DrawFilledRectangle &rArr; SSD1306_DrawLine &rArr; SSD1306_DrawPixel
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Update
+<BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Update
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetFont
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetColor
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawVLine
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawHLine
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispStringAt
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Clear
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartGUITask
 </UL>
@@ -904,12 +907,12 @@ Global Symbols
 <P><STRONG><a name="[b2]"></a>DrawLogo</STRONG> (Thumb, 192 bytes, Stack size 16 bytes, freertos.o(.text.DrawLogo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = DrawLogo &rArr; GUI_DrawBitmap &rArr; GL_DrawBitmap &rArr; LCD_DrawBitmap1BPP &rArr; LCD_L0_DrawBitmap1BPP &rArr; DrawBitLine1BPP &rArr; SSD1306_DrawPixel
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Update
+<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Update
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetFont
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawBitmap
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispStringHCenterAt
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Clear
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
 </UL>
 <BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartGUITask
 </UL>
@@ -1399,19 +1402,18 @@ Global Symbols
 
 <P><STRONG><a name="[94]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_hal_gpio.o(.text.HAL_GPIO_ReadPin))
 <BR><BR>[Called By]<UL><LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ScanKey
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20ReadByte
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20Init
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WaitAck
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_ReceiveByte
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 </UL>
 
 <P><STRONG><a name="[96]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_hal_gpio.o(.text.HAL_GPIO_WritePin))
 <BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Write595
 <LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetLeds
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20WriteByte
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20ReadByte
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_IIC_Stop
@@ -1425,16 +1427,17 @@ Global Symbols
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_ReceiveByte
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_NoAck
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Ack
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 </UL>
 
 <P><STRONG><a name="[ed]"></a>HAL_GetTick</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f4xx_hal.o(.text.HAL_GetTick))
 <BR><BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 <LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Init
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 </UL>
 
 <P><STRONG><a name="[120]"></a>HAL_IncTick</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f4xx_hal.o(.text.HAL_IncTick))
@@ -1874,20 +1877,20 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[13b]"></a>MPU_getdata</STRONG> (Thumb, 588 bytes, Stack size 120 bytes, mpu6050.o(.text.MPU_getdata))
-<BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_atan2
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_asin
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_read_fifo
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartDataTask
 </UL>
 
 <P><STRONG><a name="[13f]"></a>MPU_init</STRONG> (Thumb, 284 bytes, Stack size 8 bytes, mpu6050.o(.text.MPU_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 284<LI>Call Chain = MPU_init &rArr; run_self_test &rArr; mpu_run_self_test &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 284<LI>Call Chain = MPU_init &rArr; run_self_test &rArr; mpu_run_self_test &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; mpu_reset_fifo &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 <LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_self_test
@@ -2036,7 +2039,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[af]"></a>RateCube</STRONG> (Thumb, 454 bytes, Stack size 232 bytes, 3d_rotateapplication.o(.text.RateCube))
-<BR><BR>[Stack]<UL><LI>Max Depth = 840<LI>Call Chain = RateCube &rArr; Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 840<LI>Call Chain = RateCube &rArr; Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_SetColor
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DrawLine
@@ -2064,15 +2067,15 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[15d]"></a>Rotate_3D</STRONG> (Thumb, 576 bytes, Stack size 368 bytes, transform_3d.o(.text.Rotate_3D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 608<LI>Call Chain = Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 608<LI>Call Chain = Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_sin
 <LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_cos
 <LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MATRIX_multiply
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 <BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RateCube
 </UL>
@@ -2186,17 +2189,17 @@ Global Symbols
 <LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartMainTask
 </UL>
 
-<P><STRONG><a name="[63]"></a>StartDataTask</STRONG> (Thumb, 1148 bytes, Stack size 200 bytes, freertos.o(.text.StartDataTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 544<LI>Call Chain = StartDataTask &rArr; MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[63]"></a>StartDataTask</STRONG> (Thumb, 1268 bytes, Stack size 192 bytes, freertos.o(.text.StartDataTask))
+<BR><BR>[Stack]<UL><LI>Max Depth = 536<LI>Call Chain = StartDataTask &rArr; MPU_getdata &rArr; __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ds18b20_read
+<BR>[Calls]<UL><LI><a href="#[16d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ds18b20_read
 <LI><a href="#[16c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ds18b20_init
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USendStr
 <LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_init
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_getdata
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
@@ -2205,39 +2208,39 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.text.MX_FREERTOS_Init)
 </UL>
 <P><STRONG><a name="[62]"></a>StartGUITask</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, freertos.o(.text.StartGUITask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 888<LI>Call Chain = StartGUITask &rArr; DrawGUI2 &rArr; RateCube &rArr; Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 896<LI>Call Chain = StartGUITask &rArr; DrawGUI2 &rArr; RateCube &rArr; Rotate_3D &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Init
+<BR>[Calls]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Init
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawLogo
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI4
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI3
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI2
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI1
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.text.MX_FREERTOS_Init)
 </UL>
-<P><STRONG><a name="[60]"></a>StartKeyTask</STRONG> (Thumb, 536 bytes, Stack size 0 bytes, freertos.o(.text.StartKeyTask))
+<P><STRONG><a name="[60]"></a>StartKeyTask</STRONG> (Thumb, 952 bytes, Stack size 0 bytes, freertos.o(.text.StartKeyTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = StartKeyTask &rArr; InitESP8266 &rArr; ESP_SetTCPServer &rArr; ESP_Wait &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitESP8266
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitESP8266
 <LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ScanKey
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.text.MX_FREERTOS_Init)
 </UL>
-<P><STRONG><a name="[5f]"></a>StartMainTask</STRONG> (Thumb, 364 bytes, Stack size 8 bytes, freertos.o(.text.StartMainTask))
+<P><STRONG><a name="[5f]"></a>StartMainTask</STRONG> (Thumb, 398 bytes, Stack size 8 bytes, freertos.o(.text.StartMainTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = StartMainTask &rArr; DispSeg &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WSLogo
+<BR>[Calls]<UL><LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WSLogo
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DispSeg
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BeepDone
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep
 <LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetLeds
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.text.MX_FREERTOS_Init)
 </UL>
@@ -2258,12 +2261,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[61]"></a>StartUartTask</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, freertos.o(.text.StartUartTask))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = StartUartTask &rArr; osDelay &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = StartUartTask &rArr; ESP_Proc &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartRecvUart1
+<BR>[Calls]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartRecvUart1
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP_Proc
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP_Init
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.text.MX_FREERTOS_Init)
@@ -2387,11 +2390,11 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[16f]"></a>WSLogo</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, freertos.o(.text.WSLogo))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = WSLogo &rArr; Beep &rArr; osKernelGetTickCount &rArr; xTaskGetTickCountFromISR
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = WSLogo &rArr; Beep &rArr; HAL_TIM_PWM_Start &rArr; TIM_CCxChannelCmd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Beep
 <LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetLeds
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetTickCount
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartMainTask
 </UL>
@@ -2407,9 +2410,9 @@ Global Symbols
 <P><STRONG><a name="[97]"></a>delayUS_DWT</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, ds_18b20.o(.text.delayUS_DWT))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = delayUS_DWT
 </UL>
-<BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
-<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20WriteByte
+<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20WriteByte
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20ReadByte
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 </UL>
 
 <P><STRONG><a name="[17d]"></a>delay_ms</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, inv_mpu.o(.text.delay_ms))
@@ -2417,11 +2420,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
-<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
+<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_bypass
 <LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
 </UL>
 
 <P><STRONG><a name="[17e]"></a>dmp_enable_6x_lp_quat</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, inv_mpu_dmp_motion_driver.o(.text.dmp_enable_6x_lp_quat))
@@ -2589,11 +2592,11 @@ Global Symbols
 <P><STRONG><a name="[16c]"></a>ds18b20_init</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, ds_18b20.o(.text.ds18b20_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = ds18b20_init &rArr; DS18B20_Configuration &rArr; HAL_GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20StartConvert
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20Init
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
 <LI><a href="#[192]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DWT_Init
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20_Configuration
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20StartConvert
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartDataTask
 </UL>
@@ -2601,13 +2604,13 @@ Global Symbols
 <P><STRONG><a name="[16d]"></a>ds18b20_read</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, ds_18b20.o(.text.ds18b20_read))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = ds18b20_read &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20WriteByte
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20StartConvert
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20ReadByte
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetDS18B20
-<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20WriteByte
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20StartConvert
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DS18B20ReadByte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartDataTask
 </UL>
@@ -2651,13 +2654,13 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyro_self_test
-<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
-<LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_accel_prod_shift
-<LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_bypass
+<BR>[Called By]<UL><LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_bypass
 <LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_read_mem
 <LI><a href="#[18c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_read_fifo_stream
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyro_self_test
+<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
+<LI><a href="#[17c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_accel_prod_shift
 </UL>
 
 <P><STRONG><a name="[195]"></a>i2cwrite</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, stm32_i2c.o(.text.i2cwrite))
@@ -2665,9 +2668,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[198]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cWriteBuffer
 </UL>
-<BR>[Called By]<UL><LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
-<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
-<LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
+<BR>[Called By]<UL><LI><a href="#[17f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_write_mem
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
 <LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
@@ -2681,6 +2682,8 @@ Global Symbols
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_accel_mode
 <LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_load_firmware
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_init
+<LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
+<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
 </UL>
 
 <P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, main.o(.text.main))
@@ -2701,10 +2704,10 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
 <P><STRONG><a name="[142]"></a>mpu_configure_fifo</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, inv_mpu.o(.text.mpu_configure_fifo))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = mpu_configure_fifo &rArr; set_int_enable &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = mpu_configure_fifo &rArr; mpu_reset_fifo &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
-<LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
+<BR>[Calls]<UL><LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
+<LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_init
 <LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_run_self_test
@@ -2743,7 +2746,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[140]"></a>mpu_init</STRONG> (Thumb, 436 bytes, Stack size 16 bytes, inv_mpu.o(.text.mpu_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = mpu_init &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = mpu_init &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; mpu_reset_fifo &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
@@ -2773,7 +2776,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1a3]"></a>mpu_lp_accel_mode</STRONG> (Thumb, 202 bytes, Stack size 24 bytes, inv_mpu.o(.text.mpu_lp_accel_mode))
-<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; mpu_reset_fifo &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
 <LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_int_latched
@@ -2817,12 +2820,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1a5]"></a>mpu_run_self_test</STRONG> (Thumb, 264 bytes, Stack size 72 bytes, inv_mpu.o(.text.mpu_run_self_test))
-<BR><BR>[Stack]<UL><LI>Max Depth = 236<LI>Call Chain = mpu_run_self_test &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 236<LI>Call Chain = mpu_run_self_test &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; mpu_reset_fifo &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyro_self_test
-<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
-<LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;accel_self_test
-<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
+<BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sensors
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
 <LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
 <LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_gyro_fsr
@@ -2834,6 +2834,9 @@ Global Symbols
 <LI><a href="#[1a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_fifo_config
 <LI><a href="#[191]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_get_accel_fsr
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_configure_fifo
+<LI><a href="#[196]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyro_self_test
+<LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_st_biases
+<LI><a href="#[17b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;accel_self_test
 </UL>
 <BR>[Called By]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_self_test
 </UL>
@@ -2859,13 +2862,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[14a]"></a>mpu_set_dmp_state</STRONG> (Thumb, 140 bytes, Stack size 24 bytes, inv_mpu.o(.text.mpu_set_dmp_state))
-<BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; mpu_reset_fifo &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
+<BR>[Calls]<UL><LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_sample_rate
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_bypass
 <LI><a href="#[180]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_reset_fifo
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cwrite
+<LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_int_enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU_init
 <LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_run_self_test
@@ -2901,7 +2904,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[143]"></a>mpu_set_sample_rate</STRONG> (Thumb, 138 bytes, Stack size 24 bytes, inv_mpu.o(.text.mpu_set_sample_rate))
-<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; mpu_reset_fifo &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[19f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_set_lpf
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu_lp_accel_mode
@@ -3470,6 +3473,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartDataTask
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI4
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI3
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI2
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawGUI1
@@ -3488,13 +3492,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[13d]"></a>__hardfp_asin</STRONG> (Thumb, 770 bytes, Stack size 88 bytes, asin.o(i.__hardfp_asin))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = __hardfp_asin &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = __hardfp_asin &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[1f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
 <LI><a href="#[1f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
 <LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
@@ -3508,13 +3512,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1f8]"></a>__hardfp_atan</STRONG> (Thumb, 622 bytes, Stack size 48 bytes, atan.o(i.__hardfp_atan))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
 <LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fabs
@@ -3525,7 +3529,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[13e]"></a>__hardfp_atan2</STRONG> (Thumb, 448 bytes, Stack size 56 bytes, atan2.o(i.__hardfp_atan2))
-<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = __hardfp_atan2 &rArr; atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmpeq
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
@@ -3540,7 +3544,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[160]"></a>__hardfp_cos</STRONG> (Thumb, 180 bytes, Stack size 32 bytes, cos.o(i.__hardfp_cos))
-<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = __hardfp_cos &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = __hardfp_cos &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
 <LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
@@ -3553,7 +3557,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[161]"></a>__hardfp_sin</STRONG> (Thumb, 180 bytes, Stack size 32 bytes, sin.o(i.__hardfp_sin))
-<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__set_errno
 <LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
@@ -3566,14 +3570,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1fc]"></a>__ieee754_rem_pio2</STRONG> (Thumb, 938 bytes, Stack size 120 bytes, rred.o(i.__ieee754_rem_pio2))
-<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = __ieee754_rem_pio2 &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fabs
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 </UL>
@@ -3582,11 +3586,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1fe]"></a>__kernel_cos</STRONG> (Thumb, 322 bytes, Stack size 64 bytes, cos_i.o(i.__kernel_cos))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = __kernel_cos &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = __kernel_cos &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 </UL>
@@ -3595,10 +3599,10 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1f5]"></a>__kernel_poly</STRONG> (Thumb, 248 bytes, Stack size 24 bytes, poly.o(i.__kernel_poly))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_asin
 <LI><a href="#[1fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
@@ -3607,12 +3611,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1fd]"></a>__kernel_sin</STRONG> (Thumb, 280 bytes, Stack size 72 bytes, sin_i.o(i.__kernel_sin))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = __kernel_sin &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = __kernel_sin &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
 <LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
@@ -3675,7 +3679,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1fa]"></a>atan</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, atan.o(i.atan))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = atan &rArr; __hardfp_atan &rArr; __kernel_poly &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_atan
 </UL>
@@ -3805,8 +3809,8 @@ Local Symbols
 <P><STRONG><a name="[65]"></a>UART_DMARxHalfCplt</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, stm32f4xx_hal_uart.o(.text.UART_DMARxHalfCplt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = UART_DMARxHalfCplt
 </UL>
-<BR>[Calls]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxHalfCpltCallback
-<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_RxEventCallback
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UARTEx_RxEventCallback
+<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxHalfCpltCallback
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> stm32f4xx_hal_uart.o(.text.UART_Start_Receive_DMA)
 </UL>
@@ -4248,7 +4252,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[149]"></a>run_self_test</STRONG> (Thumb, 144 bytes, Stack size 40 bytes, mpu6050.o(.text.run_self_test))
-<BR><BR>[Stack]<UL><LI>Max Depth = 276<LI>Call Chain = run_self_test &rArr; mpu_run_self_test &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; set_int_enable &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
+<BR><BR>[Stack]<UL><LI>Max Depth = 276<LI>Call Chain = run_self_test &rArr; mpu_run_self_test &rArr; mpu_set_dmp_state &rArr; mpu_set_sample_rate &rArr; mpu_lp_accel_mode &rArr; mpu_configure_fifo &rArr; mpu_reset_fifo &rArr; i2cwrite &rArr; i2cWriteBuffer &rArr; I2C_WaitAck &rArr; I2C_delay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;puts
 <LI><a href="#[190]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dmp_set_gyro_bias
@@ -4343,10 +4347,10 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[1ff]"></a>_fp_digits</STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<BR><BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 <LI><a href="#[200]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 </UL>

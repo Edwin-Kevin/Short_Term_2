@@ -75,7 +75,12 @@ volatile float temp = 0;
 uint8_t tempwarn = 0;
 uint8_t mpuwarn = 0;
 uint8_t g_bUping = 0;
-uint16_t templimit = 35;
+uint8_t g_mpustep = 7;     //震动检测灵敏度
+uint8_t g_warntime = 30;   //报警时长
+uint16_t g_upstep = 100;   //上传间隔
+float templimit = 35.0f;   //温度上限
+
+uint8_t paridx = 0;        //参数索引
 
 uint8_t pageidx = 0;
 uint8_t g_fax_data[MAX_DATA_LEN];
@@ -90,6 +95,8 @@ float curve_fax = 0;
 float curve_fay = 0;
 float curve_faz = 0;
 float curve_temp = 0;
+float tempMin = 20;
+float tempMax = 40;
 
 unsigned char TAB_Kai[128] = {	/* 楷 0xbfac*/
 ________,________,________,________,
@@ -297,18 +304,18 @@ void StartMainTask(void *argument)
 			  break;
 		}
 		
-		if(tempwarn || mpuwarn)
+		if((tempwarn || mpuwarn) && g_warntime > 0)
 		{
 			if(warntick == 0)
 				warntick = osKernelGetTickCount();
-			else if(osKernelGetTickCount() >= warntick + 30000)
+			else if(osKernelGetTickCount() >= warntick + 1000 * g_warntime)
 			{
 				tempwarn = mpuwarn = 0;
 				warntick = 0;
 			}
 			else
 			{
-				uint32_t tic = warntick + 30000 - osKernelGetTickCount();
+				uint32_t tic = warntick + 1000 * g_warntime - osKernelGetTickCount();
 				num[0] = (tic / 10000) % 10;
 				num[1] = (tic / 1000) % 10;
 				num[2] = (tic / 100) % 10;
@@ -467,6 +474,57 @@ void StartKeyTask(void *argument)
 						g_ws = WS_GUI1;
 						pageidx = 0;
 					}
+					else if(key == KEY5)
+					{
+						++paridx;
+						paridx %= 4;
+					}
+					else if(key == KEY2)
+					{
+						if(paridx == 0)
+						{
+							if(templimit > 0)
+								templimit -= 1;
+						}
+						if(paridx == 1)
+						{
+							if(g_mpustep > 0)
+								--g_mpustep;
+						}
+						if(paridx == 2)
+						{
+							if(g_warntime > 0)
+								--g_warntime;
+						}
+						if(paridx == 3)
+						{
+							if(g_upstep > 100)
+								g_upstep -= 100;
+						}
+					}
+					else if(key == KEY3)
+					{
+						if(paridx == 0)
+						{
+							if(templimit < 90)
+								templimit += 1;
+						}
+						if(paridx == 1)
+						{
+							if(g_mpustep < 9)
+								++g_mpustep;
+						}
+						if(paridx == 2)
+						{
+							if(g_warntime < 60)
+								++g_warntime;
+						}
+						if(paridx == 3)
+						{
+							if(g_upstep < 10000)
+								g_upstep += 100;
+						}						
+					}
 					else if(key == KEY6)
 					{
 						g_ws = WS_LOGO;
@@ -601,6 +659,7 @@ void StartDataTask(void *argument)
 	uint8_t idx = 0;
 	uint8_t temp_idx = 0;
 	float ft;
+	float tempAvg = (tempMin + tempMax) / 2;
 	while(cnt++ < 5 && !mpuok)
 	{
 		osDelay(500);
@@ -612,7 +671,6 @@ void StartDataTask(void *argument)
 	uint32_t mputick = 0;
 	uint32_t mpucurvetick = 0;
 	uint32_t uptick=0;
-	uint32_t g_upstep=0;
 	
 	int warcnt = 0;
 	
@@ -629,9 +687,10 @@ void StartDataTask(void *argument)
 				temp = ft;
 				if(osKernelGetTickCount() >= dscurvetick + curve_speed)
 				{
+					tempAvg = (tempMin + tempMax) / 2;
 					dscurvetick = osKernelGetTickCount();
 					curve_temp = temp;
-					g_temp_data[temp_idx] = 32 - (curve_temp - 30) * 2;
+					g_temp_data[temp_idx] = 32 - (curve_temp - tempAvg) * (40 / (tempMax - tempMin));
 					++temp_idx;
 					if(temp_idx >= MAX_DATA_LEN)
 					{
@@ -675,7 +734,7 @@ void StartDataTask(void *argument)
 					}
 				}
 				
-				if(ax * ax + ay * ay + az * az > 400000000)
+				if(g_mpustep > 0 && (ax * ax + ay * ay + az * az > 200000000 * (10 - g_mpustep)))
 				{
 					if(++warcnt >= 5)
 					{
@@ -860,6 +919,10 @@ void DrawGUI2(void)
 	int sh = 64 - 12 - 12;
 	int ox = 48;
 	int oy = 12 + sh;
+//	float dh = sh/(tempMax - tempMin);
+	int tt = (((int)(temp) + 4) / 10) * 10;
+	tempMin = tt - 10;
+	tempMax = tt + 10;
 	
 	switch(pageidx)
 	{
@@ -868,8 +931,11 @@ void DrawGUI2(void)
 		  sprintf(str,"温度:%.1f℃",temp);
 		  for(i = 0;i < MAX_DATA_LEN - 1;++i)
 				GUI_DrawLine(51 + i,g_temp_data[i],51 + i + 1,g_temp_data[i + 1]);		
-		  for(i = 51;i <= 128;i+=2)
-				GUI_DrawPixel(i,52 - (templimit - 20) * 2);
+			if(templimit >= 20 && templimit <= 40)
+			{
+				for(i = 51;i <= 128;i+=2)
+					GUI_DrawPixel(i,52 - (templimit - tempMin) * 2);
+			}
 			break;
 		case 1:
 	    GUI_DrawHLine(32,51,128);
@@ -934,6 +1000,8 @@ void DrawGUI3(void)
 
 void DrawGUI4(void)
 {
+	char buf[20];
+	
 	GUI_Clear();
 	GUI_SetFont(&GUI_FontHZ_SimSun_12);
 	GUI_DispStringAt("实时监测",0,0);
@@ -946,6 +1014,35 @@ void DrawGUI4(void)
 	
 	GUI_DrawHLine(52,0,128);
 	GUI_DrawVLine(48,0,52);
+	
+	GUI_DispStringAt("温度上限:",50,0);
+	GUI_DispStringAt("震动灵敏度:",50,13);
+	GUI_DispStringAt("报警时长:",50,26);
+	GUI_DispStringAt("上传间隔:",50,39);
+	
+	sprintf(buf,"%.0f℃",templimit);
+	if(paridx == 0)
+		GUI_SetColor(GUI_COLOR_BLACK);
+	GUI_DispStringAt(buf,104,0);
+	GUI_SetColor(GUI_COLOR_WHITE);
+	
+	sprintf(buf,"%d",g_mpustep);
+	if(paridx == 1)
+		GUI_SetColor(GUI_COLOR_BLACK);
+	GUI_DispStringAt(buf,116,13);
+	GUI_SetColor(GUI_COLOR_WHITE);
+	
+	sprintf(buf,"%dS",g_warntime);
+	if(paridx == 2)
+		GUI_SetColor(GUI_COLOR_BLACK);
+	GUI_DispStringAt(buf,104,26);
+	GUI_SetColor(GUI_COLOR_WHITE);
+	
+	sprintf(buf,"%.1fS",g_upstep / 1000.0f);
+	if(paridx == 3)
+		GUI_SetColor(GUI_COLOR_BLACK);
+	GUI_DispStringAt(buf,104,39);
+	GUI_SetColor(GUI_COLOR_WHITE);
 	
 	GUI_Update();	
 }
