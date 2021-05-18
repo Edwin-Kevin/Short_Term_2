@@ -734,7 +734,7 @@ void StartDataTask(void *argument)
 					}
 				}
 				
-				if(g_mpustep > 0 && (ax * ax + ay * ay + az * az > 200000000 * (10 - g_mpustep)))
+				if(g_mpustep > 0 && (ax * ax + ay * ay + az * az > 150000000 * (10 - g_mpustep)))
 				{
 					if(++warcnt >= 5)
 					{
@@ -1087,7 +1087,9 @@ void InitESP8266(void)
 	ESP_SetCIPMode(0); 
 	if(ESP_IsOK())
 	{
-		ESP_SetMode(1);
+		ESP_SetMode(3);
+		ESP_GetSSID();
+		
 		if(ESP_JoinAP(AP_NAME,AP_PSW))
 		{
 			ESP_GetIPAddr();       //ªÒ»°IPµÿ÷∑
