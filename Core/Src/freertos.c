@@ -29,6 +29,7 @@
 #include "gpio.h"
 #include "GUI.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include "tim.h"
 #include "DS_18B20.h"
 #include "MPU6050.h"
@@ -592,6 +593,37 @@ void StartUartTask(void *argument)
 		if(esp8266.recv_len > 0)
 		{
 			printf("%s",esp8266.recv_data);
+			char *pb = (char *)(esp8266.recv_data);
+			char buf[40];
+			if(pb[0] == 'Q' && pb[1] == 'P' && pb[2] == 'A' && pb[3] == 'R' && pb[4] == 'A')   //查询函数、应答
+			{
+				sprintf(buf,"P1:%.0f, P2:%d, P3:%d, P4:%d\n",templimit,g_mpustep,g_warntime,g_upstep);
+				USendStr(&huart6,(uint8_t *)buf,strlen(buf));
+			}
+			else if(pb[0] == 'P' && pb[1] == '1' && pb[2] == ':')                              //参数设置
+			{
+				templimit = atof(pb + 3);
+				pb = strstr(pb,"P2:");
+				if(pb)
+				{
+					g_mpustep = atoi(pb + 3);
+					
+					pb = strstr(pb,"P3:");
+					if(pb)
+					{
+						g_warntime = atoi(pb + 3);
+						
+						pb = strstr(pb,"P4:");
+						if(pb)
+						{
+							g_upstep = atoi(pb + 3);
+							
+							USendStr(&huart6,(uint8_t *)"OK\n",3);
+						}
+					}
+				}
+			}
+			
 			esp8266.recv_len = 0;
 		}
 		

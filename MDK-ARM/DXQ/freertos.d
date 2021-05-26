@@ -43,7 +43,8 @@ dxq/freertos.o: ..\Core\Src\freertos.c \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os.h \
   ..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.h \
   ..\Core\Inc\gpio.h ..\Core\Inc\main.h ..\Drivers\OLED\GUI.h \
-  F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h ..\Core\Inc\tim.h \
+  F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  F:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h ..\Core\Inc\tim.h \
   ..\Drivers\DS18B20\DS_18B20.h ..\Drivers\MPU6050\MPU6050.h \
   ..\Drivers\MPU6050\inv_mpu.h \
   ..\Drivers\MPU6050\inv_mpu_dmp_motion_driver.h \
