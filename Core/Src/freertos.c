@@ -623,6 +623,10 @@ void StartUartTask(void *argument)
 					}
 				}
 			}
+			else if(pb[0] == 'O' && pb[1] == 'P' && pb[2] == 'E' && pb[3] == 'N')
+				g_bUping = 1;
+			else if(pb[0] == 'S' && pb[1] == 'T' && pb[2] == 'O' && pb[3] == 'P')
+				g_bUping = 0;
 			
 			esp8266.recv_len = 0;
 		}
