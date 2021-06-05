@@ -62,8 +62,8 @@ void ESP8266IdleCallBack(UART_HandleTypeDef *huart);
 void StartRecvUart6(void);
 
 
-#define AP_NAME     "PandoraBox-2.4G-435F3C"
-#define AP_PSW      "13008985362"
-#define TCP_SERVER  "192.168.1.186"
+#define AP_NAME     "hubert"
+#define AP_PSW      "hbno1112"
+#define TCP_SERVER  "172.20.10.8"
 #define TCP_PORT    4321
 #endif	// __ESP8266_H

@@ -563,7 +563,7 @@ void StartKeyTask(void *argument)
 			}
 		}
 				
-    osDelay(10);
+    osDelay(1);
   }
   /* USER CODE END StartKeyTask */
 }
